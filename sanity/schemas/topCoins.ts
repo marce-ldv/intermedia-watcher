@@ -1,7 +1,7 @@
 export default {
   name: 'topCoins',
   type: 'document',
-  title: 'Coins',
+  title: 'Coin',
   fields: [
     {
       name: 'name',

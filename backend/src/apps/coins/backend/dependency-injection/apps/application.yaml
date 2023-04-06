@@ -1,0 +1,9 @@
+services:
+
+  Apps.coins.controllers.StatusGetController:
+    class: ../../controllers/StatusGetController
+    arguments: []
+
+  Apps.coins.controllers.CoursePutController:
+    class: ../../controllers/CoinPutController
+    arguments: [""]
