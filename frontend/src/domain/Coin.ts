@@ -1,6 +1,6 @@
 export interface Coin {
   coins: CoinElement[];
-  exchanges: any[];
+  exchanges: never[];
 }
 
 export interface CoinElement {

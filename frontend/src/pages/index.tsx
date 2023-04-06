@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { type NextPage } from "next";
-import { createClient } from "next-sanity";
+// import { createClient } from "next-sanity";
 import Head from "next/head";
 // import { getTopCoins } from "~/repository/getTopCoins";
-import { type Coin } from "~/domain/Coin";
+// import { type Coin } from "~/domain/Coin";
 
 const Home: NextPage = () => {
-  const [topCoins, setTopCoins] = useState<Coin[]>([]);
+  // const [topCoins, setTopCoins] = useState<Coin[]>([]);
 
   // console.log('topCoins', topCoins);
 
@@ -51,7 +51,7 @@ const Home: NextPage = () => {
                   scope="row"
                   className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
                 >
-                  Apple MacBook Pro 17"
+                  Apple MacBook Pro 17
                 </th>
                 <td className="px-6 py-4">Silver</td>
                 <td className="px-6 py-4">Laptop</td>
@@ -89,12 +89,12 @@ const Home: NextPage = () => {
 
 export default Home;
 
-const client = createClient({
-  projectId: "6fyyl8sn",
-  dataset: "production",
-  apiVersion: "2023-04-06",
-  useCdn: false,
-});
+// const client = createClient({
+//   projectId: "6fyyl8sn",
+//   dataset: "production",
+//   apiVersion: "2023-04-06",
+//   useCdn: false,
+// });
 
 // export async function getStaticProps() {
 //   const query = `*[_type == "coin"]`;
