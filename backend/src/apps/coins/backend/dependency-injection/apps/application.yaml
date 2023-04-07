@@ -4,10 +4,6 @@ services:
     class: ../../controllers/StatusGetController
     arguments: []
 
-  Apps.coins.controllers.CoinPutController:
-    class: ../../controllers/CoinPutController
-    arguments: [""]
-
   Apps.coins.controllers.CoinGetAllController:
     class: ../../controllers/CoinGetAllController
     arguments: [ "@Coins.coins.application.CoinsGetAll" ]

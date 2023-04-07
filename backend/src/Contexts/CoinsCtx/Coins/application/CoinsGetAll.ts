@@ -1,5 +1,5 @@
 import { CoinGeckoService } from "./CoinGeckoService";
-import {CoinGecko} from "../domain/CoinGecko";
+import {CoinGeckoDTO} from "./dto/CoinGeckoDTO";
 
 export class CoinsGetAll {
 	private readonly service: CoinGeckoService;
@@ -8,7 +8,7 @@ export class CoinsGetAll {
 		this.service = coinGeckoService;
 	}
 
-	async run(): Promise<CoinGecko[]> {
+	async run(): Promise<CoinGeckoDTO[]> {
 		return this.service.getList();
 	}
 }

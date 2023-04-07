@@ -1,4 +1,4 @@
-export interface CoinGecko {
+export interface CoinGeckoDTO {
   coins: CoinElement[];
   exchanges: never[];
 }

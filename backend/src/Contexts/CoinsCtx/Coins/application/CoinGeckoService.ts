@@ -1,6 +1,6 @@
-import {CoinGecko} from "../domain/CoinGecko";
+import {CoinGeckoDTO} from "./dto/CoinGeckoDTO";
 
 export interface CoinGeckoService {
-  getList(): Promise<CoinGecko[]>;
-  getTrending(): Promise<CoinGecko[]>;
+  getList(): Promise<CoinGeckoDTO[]>;
+  getTrending(): Promise<CoinGeckoDTO>;
 }
