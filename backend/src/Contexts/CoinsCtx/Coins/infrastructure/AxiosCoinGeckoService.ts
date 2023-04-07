@@ -1,7 +1,7 @@
 import axios, {AxiosInstance} from "axios";
 import { CoinGeckoService } from "../application/CoinGeckoService";
 import {CoinGeckoDTO} from "../application/dto/CoinGeckoDTO";
-import {CoinMarketGeckoDTO} from "../application/dto/CoinMarketGeckoDTO";
+// import {CoinMarketGeckoDTO} from "../application/dto/CoinMarketGeckoDTO";
 
 export class AxiosCoinGeckoService implements CoinGeckoService {
   private readonly axiosInstance: AxiosInstance;
@@ -18,22 +18,20 @@ export class AxiosCoinGeckoService implements CoinGeckoService {
 
   async getTrending(): Promise<any> {
     const {data} = await this.axiosInstance.get<CoinGeckoDTO>("/search/trending");
+    console.log('data', data)
 
-    const ids = data.coins.map(({ item }) => {
-      return item.id
-    }).join(',')
+    // const ids = data.coins.map(({ item }) => {
+    //   return item.id
+    // }).join(',')
+    //
+    // const coins = await this.axiosInstance.get<CoinMarketGeckoDTO>(`/coins/markets`, {
+    //   params: {
+    //     vs_currency: 'usd',
+    //     ids,
+    //   }
+    // })
 
-    const coins = await this.axiosInstance.get<CoinMarketGeckoDTO>(`/coins/markets`, {
-      params: {
-        vs_currency: 'usd',
-        ids,
-      }
-    })
-
-    // const d = this.combineCoinsAndTrending(data.coins, coins.data)
-    // console.log('data combined', d)
-
-    return coins.data;
+    return data.coins;
   }
 
   // combineCoinsAndTrending(coins: CoinGeckoDTO[], trending: CoinMarketGeckoDTO[]) {
