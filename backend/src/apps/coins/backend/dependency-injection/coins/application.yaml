@@ -18,3 +18,7 @@ services:
   Coins.auth.application.UserRegister:
     class: ../../../../../Contexts/CoinsCtx/Auth/application/UserRegister
     arguments: [ "@Coins.auth.domain.UserRepository" ]
+
+  Coins.auth.application.UserLogin:
+    class: ../../../../../Contexts/CoinsCtx/Auth/application/UserLogin
+    arguments: [ "@Coins.auth.domain.UserRepository" ]

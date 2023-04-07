@@ -30,4 +30,19 @@ export class SanityUserRepository implements UserRepository {
       }
     );
   }
+
+  async findUserByEmail(user: { email: string }): Promise<User> {
+    const response = axios.get('https://6fyyl8sn.api.sanity.io/v1/data/query/user', {
+      params: {
+        query: `*[_type == "user" && email == "${user.email}"]`,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${SANITY_TOKEN}`,
+      }
+    })
+    console.log(response)
+
+    return new User({ email: 'email', password: 'password', username: 'username' });
+  }
 }

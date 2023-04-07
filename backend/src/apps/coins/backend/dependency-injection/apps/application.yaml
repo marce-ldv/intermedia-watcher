@@ -15,3 +15,7 @@ services:
   Apps.coins.controllers.UserRegisterController:
     class: ../../controllers/UserRegisterController
     arguments: [ "@Coins.auth.application.UserRegister" ]
+
+  Apps.coins.controllers.UserLoginController:
+    class: ../../controllers/UserLoginController
+    arguments: [ "@Coins.auth.application.UserRegister" ]
