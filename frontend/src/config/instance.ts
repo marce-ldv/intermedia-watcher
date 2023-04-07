@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const coingecko_api = 'https://api.coingecko.com/api/v3/';
+export const API = 'http://localhost:5000/';
 
 const instance = axios.create({
-  baseURL: coingecko_api,
+  baseURL: API,
 });
 
 export default instance;
