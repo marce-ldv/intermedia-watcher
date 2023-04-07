@@ -1,7 +1,7 @@
 export default {
   name: 'coin',
   type: 'document',
-  title: 'Coin',
+  title: 'User',
   fields: [
     {
       name: 'name',

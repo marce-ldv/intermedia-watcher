@@ -3,6 +3,10 @@ services:
     class: ../../../../../Contexts/CoinsCtx/Coins/infrastructure/AxiosCoinGeckoService
     arguments: [ "" ]
 
+  Coins.auth.application.UserService:
+    class: ../../../../../Contexts/CoinsCtx/Auth/infrastructure/AxiosUserService
+    arguments: [ "" ]
+
   Coins.coins.application.CoinsGetAll:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetAll
     arguments: [ "@Coins.coins.application.CoinGeckoService" ]
@@ -10,3 +14,7 @@ services:
   Coins.coins.application.CoinsGetTrending:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetTrending
     arguments: [ "@Coins.coins.application.CoinGeckoService" ]
+
+  Coins.coins.application.UserRegister:
+    class: ../../../../../Contexts/CoinsCtx/Auth/application/UserRegister
+    arguments: [ "@Coins.auth.application.UserService" ]

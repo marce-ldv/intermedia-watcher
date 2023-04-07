@@ -1,7 +1,7 @@
 import type { Coin } from './Coin';
 
 export interface CoinRepository {
-	save(course: Coin): Promise<void>;
-	getAll(course: Coin): Promise<Coin[]>;
-	getTrending(course: Coin): Promise<Coin[]>;
+	save(coin: Coin): Promise<void>;
+	getAll(coin: Coin): Promise<Coin[]>;
+	getTrending(coin: Coin): Promise<Coin[]>;
 }

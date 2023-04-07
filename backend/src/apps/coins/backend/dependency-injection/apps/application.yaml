@@ -12,3 +12,6 @@ services:
     class: ../../controllers/CoinGetTrendingController
     arguments: [ "@Coins.coins.application.CoinsGetTrending" ]
 
+  Apps.coins.controllers.UserRegisterController:
+    class: ../../controllers/UserRegisterController
+    arguments: [ "@Coins.coins.application.UserRegister" ]
