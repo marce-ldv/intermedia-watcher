@@ -15,6 +15,10 @@ services:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetTrending
     arguments: [ "@Coins.coins.application.CoinGeckoService" ]
 
-  Coins.coins.application.UserRegister:
+  Coins.auth.domain.UserRepository:
+    class: ../../../../../Contexts/CoinsCtx/Auth/infrastructure/SanityUserRepository
+    arguments: [ "" ]
+
+  Coins.auth.application.UserRegister:
     class: ../../../../../Contexts/CoinsCtx/Auth/application/UserRegister
-    arguments: [ "@Coins.auth.application.UserService" ]
+    arguments: [ "@Coins.auth.domain.UserRepository" ]

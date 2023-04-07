@@ -1,3 +1,6 @@
+import { config } from 'dotenv';
+config();
+
 import { CoinsBackendApp } from './CoinsBackendApp';
 
 try {

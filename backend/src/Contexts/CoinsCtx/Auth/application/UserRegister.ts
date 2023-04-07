@@ -1,13 +1,13 @@
-import {UserService} from "./UserService";
+import {UserRepository} from "../domain/UserRepository";
 
 export class UserRegister {
-	private readonly service: UserService;
+	private readonly repository: UserRepository;
 
-	constructor(userService: UserService) {
-		this.service = userService;
+	constructor(userService: UserRepository) {
+		this.repository = userService;
 	}
 
 	async run(): Promise<void> {
-		return this.service.register();
+		return this.repository.register({ email: 'asd', password: 'ds', username: 'dffd' });
 	}
 }

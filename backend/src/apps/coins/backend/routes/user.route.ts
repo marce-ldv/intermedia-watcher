@@ -8,5 +8,5 @@ export const register = (router: Router): void => {
     'Apps.coins.controllers.UserRegisterController'
   );
 
-	router.get('/user/register', (req: Request, res: Response) => userRegisterController.run(req, res));
+	router.post('/user/register', (req: Request, res: Response) => userRegisterController.run(req, res));
 };

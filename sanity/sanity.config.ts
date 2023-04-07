@@ -8,7 +8,7 @@ export default defineConfig({
   title: 'intermedia-watcher',
 
   projectId: '6fyyl8sn',
-  dataset: 'production',
+  dataset: 'user',
 
   plugins: [deskTool(), visionTool()],
 
