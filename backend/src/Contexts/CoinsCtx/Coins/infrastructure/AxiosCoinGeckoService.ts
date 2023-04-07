@@ -1,7 +1,8 @@
 import axios, {AxiosInstance} from "axios";
 import { CoinGeckoService } from "../application/CoinGeckoService";
-import {CoinGeckoDTO} from "../application/dto/CoinGeckoDTO";
-// import {CoinMarketGeckoDTO} from "../application/dto/CoinMarketGeckoDTO";
+import {CoinElement, CoinGeckoDTO} from "../application/dto/CoinGeckoDTO";
+import {CoinMarketGeckoDTO} from "../application/dto/CoinMarketGeckoDTO";
+import {CoinTrendingCombinedGeckoDTO} from "../application/dto/CoinTrendingCombinedGeckoDTO";
 
 export class AxiosCoinGeckoService implements CoinGeckoService {
   private readonly axiosInstance: AxiosInstance;
@@ -16,35 +17,34 @@ export class AxiosCoinGeckoService implements CoinGeckoService {
     return data;
   }
 
-  async getTrending(): Promise<any> {
+  async getTrending(): Promise<CoinTrendingCombinedGeckoDTO[]> {
     const {data} = await this.axiosInstance.get<CoinGeckoDTO>("/search/trending");
-    console.log('data', data)
+    const trendingGecko = data.coins;
 
-    // const ids = data.coins.map(({ item }) => {
-    //   return item.id
-    // }).join(',')
-    //
-    // const coins = await this.axiosInstance.get<CoinMarketGeckoDTO>(`/coins/markets`, {
-    //   params: {
-    //     vs_currency: 'usd',
-    //     ids,
-    //   }
-    // })
+    const ids = trendingGecko.map(({ item }) => {
+      return item.id
+    }).join(',')
 
-    return data.coins;
+    const coinsMarkets = await this.axiosInstance.get<CoinMarketGeckoDTO>(`/coins/markets`, {
+      params: {
+        vs_currency: 'usd',
+        ids,
+      }
+    })
+
+    const coinsMarketsData = coinsMarkets?.data
+    return this.combineCoinsAndTrending(trendingGecko, coinsMarketsData)
   }
 
-  // combineCoinsAndTrending(coins: CoinGeckoDTO[], trending: CoinMarketGeckoDTO[]) {
-  //   return coins.map((coin) => {
-  //     const trendingCoin = trending.find((trendingCoin) => trendingCoin.id === coin.item.id)
-  //     return {
-  //       ...coin,
-  //       item: {
-  //         ...coin.item,
-  //         price_btc: trendingCoin?.current_price,
-  //         market_cap_rank: trendingCoin?.market_cap_rank,
-  //       }
-  //     }
-  //   })
-  // }
+  combineCoinsAndTrending(coins: CoinElement[], market: any): CoinTrendingCombinedGeckoDTO[]{
+    return coins.map((coin) => {
+      const marketCoin = market.find((marketCoin: CoinMarketGeckoDTO) => marketCoin.id === coin.item.id)
+      return {
+        ...coin.item,
+        price_change_24h: marketCoin.price_change_24h,
+        coin_id: marketCoin.coin_id,
+        market_cap: marketCoin.market_cap,
+      }
+    })
+  }
 }

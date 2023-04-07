@@ -12,7 +12,6 @@ export interface Item {
   coin_id: number;
   name: string;
   symbol: string;
-  market_cap_rank: number;
   thumb: string;
   small: string;
   large: string;
