@@ -13,7 +13,6 @@ export class CoinGetAllController implements Controller {
 
 	async run(req: Request, res: Response): Promise<void> {
     const response = await this.useCase.run();
-    console.log('response', response)
 		res.status(httpStatus.OK).send(response);
 	}
 }

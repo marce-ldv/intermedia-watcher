@@ -13,7 +13,6 @@ export class CoinGetTrendingController implements Controller {
 
 	async run(req: Request, res: Response): Promise<void> {
     const response = await this.useCase.run();
-    console.log('CoinGetTrendingController', response)
 		res.status(httpStatus.OK).send(response);
 	}
 }

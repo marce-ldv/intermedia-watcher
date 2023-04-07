@@ -10,8 +10,9 @@ export class CoinsGetTrending {
 
 	async run(): Promise<Coin[]> {
 		const response = await this.service.getTrending();
+    console.log('response', response)
 
-    const coins = response.coins.map(({ item }) => {
+    const coins = response?.coins.map(({ item }) => {
       return new Coin({
         id: item.id,
         name: item.name,
@@ -23,6 +24,8 @@ export class CoinsGetTrending {
         canFavorite: false
       })
     })
+
+    console.log('coins', coins)
 
     return coins
 	}
