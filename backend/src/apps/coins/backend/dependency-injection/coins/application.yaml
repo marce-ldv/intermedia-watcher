@@ -3,10 +3,6 @@ services:
     class: ../../../../../Contexts/CoinsCtx/Coins/infrastructure/AxiosCoinGeckoService
     arguments: [ "" ]
 
-  Coins.auth.application.UserService:
-    class: ../../../../../Contexts/CoinsCtx/Auth/infrastructure/AxiosUserService
-    arguments: [ "" ]
-
   Coins.coins.application.CoinsGetAll:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetAll
     arguments: [ "@Coins.coins.application.CoinGeckoService" ]
