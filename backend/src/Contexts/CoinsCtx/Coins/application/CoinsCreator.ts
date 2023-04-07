@@ -9,8 +9,8 @@ export class CoinsCreator {
 	}
 
 	async run(id: string, name: string, duration: string): Promise<void> {
-		const course = new Coin({ id, name, duration });
+		const coin = new Coin({ id, name, duration });
 
-		return this.repository.save(course);
+		return this.repository.save(coin);
 	}
 }

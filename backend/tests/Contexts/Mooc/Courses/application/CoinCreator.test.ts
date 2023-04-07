@@ -1,6 +1,6 @@
 import { CoinsCreator } from '../../../../../src/Contexts/CoinsCtx/Coins/application/CoinsCreator';
 import { Coin } from '../../../../../src/Contexts/CoinsCtx/Coins/domain/Coin';
-import { CourseRepositoryMock } from '../__mocks__/CourseRepositoryMock';
+import { CourseRepositoryMock } from '../__mocks__/CoinRepositoryMock';
 
 let repository: CourseRepositoryMock;
 let creator: CoinsCreator;
