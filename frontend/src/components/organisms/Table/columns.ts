@@ -1,15 +1,7 @@
 export const columns = [
   {
-    Header: 'Logo',
-    accessor: 'logo',
-  },
-  {
     Header: 'Name',
     accessor: 'name',
-  },
-  {
-    Header: 'Symbol',
-    accessor: 'symbol',
   },
   {
     Header: 'Price',

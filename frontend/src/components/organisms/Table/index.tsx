@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {getTrendingCoins} from "~/repository/getTrendingCoins";
 import type {Coin} from "~/domain/Coin";
 import Image from "next/image";
+import {Checkbox, Table} from "flowbite-react";
 
 const useTable = () => {
   const [data, setData] = useState<Coin[]>([]);
@@ -22,51 +23,56 @@ const useTable = () => {
   }
 }
 
-export const Table = () => {
+export const CustomTable = () => {
   const { columns, data } = useTable()
 
   return (
-    <div className="relative overflow-x-auto">
-      <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
-        <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+    <Table hoverable={true}>
+      <Table.Head>
         {
           columns.map((column) => (
-            <th
-              key={column.accessor}
-              scope="col"
-              className="px-6 py-3"
-            >
+            <Table.HeadCell className="!p-4" key={column.accessor}>
               {column.Header}
-            </th>
+            </Table.HeadCell>
           ))
         }
-        </thead>
-        <tbody>
+      </Table.Head>
+      <Table.Body className="divide-y">
         {
           data.map((row) => (
-            <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800" key={row.name}>
-              <td className="px-6 py-4">
-                <Image src={row.logo} alt={row.name} width={20} height={20} />
-              </td>
-              <th
-                scope="row"
-                className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-              >
-                {row.name}
-              </th>
-              <td className="px-6 py-4">{row.symbol}</td>
-              <td className="px-6 py-4">{row.price}</td>
-              <td className="px-6 py-4">{row.priceChange24hAgo}</td>
-              <td className="px-6 py-4">{row.marketCap}</td>
-              <td className="px-6 py-4">
-                {/*  checkbox */}
-                {row.canFavorite}
-              </td>
-            </tr>
+            <Table.Row key={row.name} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+              <Table.Cell className="!p-4">
+                <div className="flex items-center gap-4">
+                  <div className="w-8 h-8 relative">
+                    <Image
+                      src={row.logo}
+                      alt={row.name}
+                      width={32}
+                      height={32}
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-sm font-medium">{row.name}</span>
+                    <span className="text-xs text-gray-500">{row.symbol}</span>
+                  </div>
+                </div>
+              </Table.Cell>
+              <Table.Cell className="!p-4">
+                <span className="text-sm font-medium">{row.price}</span>
+              </Table.Cell>
+              <Table.Cell className="!p-4">
+                <span className="text-sm font-medium">{row.marketCap}</span>
+              </Table.Cell>
+              <Table.Cell className="!p-4">
+                <span className="text-sm font-medium">{row.priceChange24hAgo}</span>
+              </Table.Cell>
+              <Table.Cell className="!p-4">
+                <Checkbox id="remember" checked={row.canFavorite} />
+              </Table.Cell>
+            </Table.Row>
           ))
         }
-        </tbody>
-      </table>
-    </div>
+      </Table.Body>
+    </Table>
   )
 }
