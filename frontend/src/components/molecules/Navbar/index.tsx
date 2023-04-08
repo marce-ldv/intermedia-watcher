@@ -1,10 +1,9 @@
-// import Image from "next/image";
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import {Avatar, DarkThemeToggle, Dropdown, Navbar} from "flowbite-react";
 import Image from "next/image";
 
 export const CustomNavbar = () => {
   return (
-    <Navbar fluid={true} rounded={false}>
+    <Navbar fluid={true} rounded={false} className="bg-white-800 dark:bg-gray-800">
       <Navbar.Brand href="https://flowbite.com/">
         <Image
           src="https://flowbite.com/docs/images/logo.svg"
@@ -18,6 +17,7 @@ export const CustomNavbar = () => {
         </span>
       </Navbar.Brand>
       <div className="flex md:order-2">
+        <DarkThemeToggle />
         <Dropdown
           arrowIcon={false}
           inline={true}
