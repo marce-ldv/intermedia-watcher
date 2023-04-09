@@ -17,4 +17,4 @@ services:
 
   Apps.coins.controllers.UserLoginController:
     class: ../../controllers/UserLoginController
-    arguments: [ '@Coins.auth.application.UserLogin', '@Coins.auth.application.ValidateUserService' ]
+    arguments: [ '@Coins.auth.application.UserLogin', '@Coins.auth.application.ValidateUserService', '@Coins.auth.application.JWTService' ]

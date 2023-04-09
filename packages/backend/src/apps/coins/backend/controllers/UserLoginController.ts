@@ -5,20 +5,24 @@ import { Controller } from './Controller';
 import { UserLogin } from '../../../../Contexts/CoinsCtx/Auth/application/UserLogin';
 import { TypeUser } from '../../../../Contexts/CoinsCtx/Auth/domain/User';
 import { ValidateUserService } from '../../../../Contexts/CoinsCtx/Auth/application/ValidateUserService';
+import { LoginResponseDTO } from '../../../../Contexts/CoinsCtx/Auth/application/dto/LoginResponseDTO';
+import { JWTService } from '../../../../Contexts/CoinsCtx/Auth/application/JWTService';
 
 export class UserLoginController implements Controller {
   private readonly useCaseGetUser: UserLogin;
   private readonly useCaseValidateUser: ValidateUserService;
+  private readonly useCaseJWT: JWTService;
 
-  constructor(useCaseGetUser: UserLogin, useCaseValidateUser: ValidateUserService) {
+  constructor(useCaseGetUser: UserLogin, useCaseValidateUser: ValidateUserService, useCaseJWT: JWTService) {
     this.useCaseGetUser = useCaseGetUser;
     this.useCaseValidateUser = useCaseValidateUser;
+    this.useCaseJWT = useCaseJWT;
   }
 
-  async run(req: Request<{}, {}, TypeUser>, res: Response): Promise<void> {
+  async run(req: Request<{}, {}, TypeUser>, res: Response): Promise<LoginResponseDTO | any> {
     const user = await this.useCaseGetUser.run(req.body);
 
-    if(user.username === '' && user.email === '' && user.password === '') {
+    if (user.username === '' && user.email === '' && user.password === '') {
       res.status(httpStatus.NOT_FOUND).send();
       return;
     }
@@ -30,6 +34,21 @@ export class UserLoginController implements Controller {
       return;
     }
 
-    res.status(httpStatus.OK).send(user);
+    const token = this.useCaseJWT.generateToken({
+      payload: {
+        email: user.email,
+        username: user.username
+      }
+    });
+
+    const response: LoginResponseDTO = {
+      token,
+      user: {
+        username: user.username,
+        email: user.email
+      }
+    };
+
+    res.status(httpStatus.OK).send(response);
   }
 }

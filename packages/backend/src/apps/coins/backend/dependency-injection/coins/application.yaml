@@ -26,3 +26,6 @@ services:
   Coins.auth.application.ValidateUserService:
     class: ../../../../../Contexts/CoinsCtx/Auth/application/ValidateUserService
     arguments: [ '' ]
+  Coins.auth.application.JWTService:
+    class: ../../../../../Contexts/CoinsCtx/Auth/application/JWTService
+    arguments: [ '' ]
