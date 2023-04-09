@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import axios from "axios";
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,11 +10,10 @@ export default async function handler(
   switch (method) {
     case "GET":
       try {
-        const response = await fetch("http://localhost:5000/coins/trending");
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const data = await response.json();
-
-        res.status(200).json(data);
+        const response = await axios.get(
+          "http://localhost:5000/coins/trending"
+        );
+        res.status(200).json(response.data);
       } catch (error) {
         res.status(400).json({ success: false });
       }

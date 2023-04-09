@@ -1,6 +1,8 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { CustomTable } from "~/components/organisms/Table";
+import { Suspense } from "react";
+import { Spinner } from "flowbite-react";
 
 const Home: NextPage = () => {
   return (
@@ -12,7 +14,9 @@ const Home: NextPage = () => {
       </Head>
 
       {/*<h1 className="text-4xl font-bold text-white">Intermedia Watcher</h1>*/}
-      <CustomTable />
+      <Suspense fallback={<Spinner />}>
+        <CustomTable />
+      </Suspense>
     </>
   );
 };
