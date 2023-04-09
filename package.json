@@ -1,0 +1,43 @@
+{
+  "name": "intermedia-watcher",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:marce-ldv/intermedia-watcher.git",
+  "author": "Marcelo Ludovino <marcelo.docutec@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "install:packages": "yarn workspace backend install && yarn workspace frontend install",
+
+    "dev:backend": "yarn workspace backend dev:coins:backend",
+    "dev:frontend": "yarn workspace frontend dev",
+    "dev:sanity": "yarn workspace sanity dev",
+    "dev": "concurrently \"yarn dev:backend\" \"yarn dev:frontend\"",
+
+    "start:backend": "yarn workspace backend start:coins:backend",
+    "start:frontend": "yarn workspace frontend start",
+    "start:sanity": "yarn workspace sanity start",
+    "start": "concurrently \"yarn start:backend\" \"yarn start:frontend\"",
+
+    "build:backend": "yarn workspace backend build",
+    "build:frontend": "yarn workspace frontend build",
+    "build:sanity": "yarn workspace sanity build",
+    "build": "yarn build:backend && yarn build:frontend",
+
+    "test:backend": "yarn workspace backend test",
+    "test:frontend": "yarn workspace frontend test",
+    "test": "yarn test:backend && yarn test:frontend",
+
+    "lint:backend": "yarn workspace backend lint",
+    "lint:frontend": "yarn workspace frontend lint",
+    "lint": "yarn lint:backend && yarn lint:frontend"
+  },
+  "dependencies": {
+    "concurrently": "^8.0.1"
+  }
+}
