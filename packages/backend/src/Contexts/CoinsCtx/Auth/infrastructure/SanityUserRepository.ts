@@ -34,7 +34,7 @@ export class SanityUserRepository implements UserRepository {
   }
 
   async findUserByEmail(user: { email: string }): Promise<User> {
-   await axios.get('https://6fyyl8sn.api.sanity.io/v1/data/query/user', {
+    const response = await axios.get('https://6fyyl8sn.api.sanity.io/v1/data/query/user', {
       params: {
         query: `*[_type == "user" && email == "${user.email}"]`
       },
@@ -44,6 +44,10 @@ export class SanityUserRepository implements UserRepository {
       }
     });
 
-    return new User({ email: 'emailasd', password: 'passwordasd', username: 'usernameasd' });
+    return new User({
+      email: response.data.result[0].email,
+      password: response.data.result[0].password,
+      username: response.data.result[0].username
+    });
   }
 }

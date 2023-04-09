@@ -1,24 +1,28 @@
 services:
   Coins.coins.application.CoinGeckoService:
     class: ../../../../../Contexts/CoinsCtx/Coins/infrastructure/AxiosCoinGeckoService
-    arguments: ['']
+    arguments: [ '' ]
 
   Coins.coins.application.CoinsGetAll:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetAll
-    arguments: ['@Coins.coins.application.CoinGeckoService']
+    arguments: [ '@Coins.coins.application.CoinGeckoService' ]
 
   Coins.coins.application.CoinsGetTrending:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetTrending
-    arguments: ['@Coins.coins.application.CoinGeckoService']
+    arguments: [ '@Coins.coins.application.CoinGeckoService' ]
 
   Coins.auth.domain.UserRepository:
     class: ../../../../../Contexts/CoinsCtx/Auth/infrastructure/SanityUserRepository
-    arguments: ['']
+    arguments: [ '' ]
 
   Coins.auth.application.UserRegister:
     class: ../../../../../Contexts/CoinsCtx/Auth/application/UserRegister
-    arguments: ['@Coins.auth.domain.UserRepository']
+    arguments: [ '@Coins.auth.domain.UserRepository' ]
 
   Coins.auth.application.UserLogin:
     class: ../../../../../Contexts/CoinsCtx/Auth/application/UserLogin
-    arguments: ['@Coins.auth.domain.UserRepository']
+    arguments: [ '@Coins.auth.domain.UserRepository' ]
+
+  Coins.auth.application.ValidateUserService:
+    class: ../../../../../Contexts/CoinsCtx/Auth/application/ValidateUserService
+    arguments: [ '' ]
