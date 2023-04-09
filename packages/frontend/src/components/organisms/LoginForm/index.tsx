@@ -2,8 +2,10 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 
+type TypeUserAuth = { email: string; password: string }
+
 const useAuth = () => {
-  const login = async (data: any): Promise<void> => {
+  const login = async (data: TypeUserAuth): Promise<void> => {
     const response = await axios.post("api/login", data);
 
     if (!response) {
@@ -19,7 +21,7 @@ export const LoginForm = () => {
   const { login } = useAuth();
   const { handleSubmit, register } = useForm();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: TypeUserAuth) => {
     try {
       await login(data);
     } catch (error) {
@@ -28,10 +30,10 @@ export const LoginForm = () => {
   };
 
   return (
-    <form
-      onSubmit={void handleSubmit(onSubmit)}
-      className="flex flex-col gap-4"
-    >
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <div>
         <div className="mb-2 block">
           <Label htmlFor="email1" value="Your email" />
