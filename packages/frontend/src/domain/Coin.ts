@@ -6,5 +6,5 @@ export interface Coin {
   marketCap: string;
   priceChange24hAgo: string;
   symbol: string;
-  canFavorite: boolean
+  canFavorite: boolean;
 }

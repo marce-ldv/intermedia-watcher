@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import {CustomTable} from "~/components/organisms/Table";
+import { CustomTable } from "~/components/organisms/Table";
 
 const Home: NextPage = () => {
   return (
@@ -18,4 +18,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-

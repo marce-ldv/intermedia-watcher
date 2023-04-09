@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,9 +7,9 @@ export default async function handler(
   const { method } = req;
 
   switch (method) {
-    case 'GET':
+    case "GET":
       try {
-        const response = await fetch('http://localhost:5000/coins/trending');
+        const response = await fetch("http://localhost:5000/coins/trending");
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const data = await response.json();
 
@@ -19,7 +19,7 @@ export default async function handler(
       }
       break;
     default:
-      res.setHeader('Allow', ['GET']);
+      res.setHeader("Allow", ["GET"]);
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       res.status(405).end(`Method ${method} Not Allowed`);
   }
