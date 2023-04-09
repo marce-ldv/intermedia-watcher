@@ -1,21 +1,20 @@
 services:
-
   Apps.coins.controllers.StatusGetController:
     class: ../../controllers/StatusGetController
     arguments: []
 
   Apps.coins.controllers.CoinGetAllController:
     class: ../../controllers/CoinGetAllController
-    arguments: [ "@Coins.coins.application.CoinsGetAll" ]
+    arguments: ['@Coins.coins.application.CoinsGetAll']
 
   Apps.coins.controllers.CoinGetTrendingController:
     class: ../../controllers/CoinGetTrendingController
-    arguments: [ "@Coins.coins.application.CoinsGetTrending" ]
+    arguments: ['@Coins.coins.application.CoinsGetTrending']
 
   Apps.coins.controllers.UserRegisterController:
     class: ../../controllers/UserRegisterController
-    arguments: [ "@Coins.auth.application.UserRegister" ]
+    arguments: ['@Coins.auth.application.UserRegister']
 
   Apps.coins.controllers.UserLoginController:
     class: ../../controllers/UserLoginController
-    arguments: [ "@Coins.auth.application.UserRegister" ]
+    arguments: ['@Coins.auth.application.UserRegister']

@@ -1,5 +1,5 @@
-import {UserRepository} from "../domain/UserRepository";
-import {TypeUser, User} from "../domain/User";
+import { UserRepository } from '../domain/UserRepository';
+import { TypeUser, User } from '../domain/User';
 
 export class UserLogin {
   private readonly repository: UserRepository;
@@ -10,7 +10,7 @@ export class UserLogin {
 
   async run(body: TypeUser): Promise<User> {
     return this.repository.findUserByEmail({
-      email: body.email,
+      email: body.email
     });
   }
 }

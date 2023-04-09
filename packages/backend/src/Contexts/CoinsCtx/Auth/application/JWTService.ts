@@ -7,7 +7,7 @@ export class JWTService {
   // add salt to the password
   generateToken(payload: string | any): string {
     const token = jwt.sign(payload, JWT_SECRET, {
-      expiresIn: '1d',
+      expiresIn: '1d'
     });
 
     return token;

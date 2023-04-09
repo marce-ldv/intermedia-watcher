@@ -10,5 +10,5 @@ export interface CoinTrendingCombinedGeckoDTO {
   name: string;
   market_cap: number;
   price_btc: number;
-  slug: string
+  slug: string;
 }

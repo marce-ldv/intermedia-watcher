@@ -2,7 +2,7 @@ import type { Request, Response } from 'express';
 import httpStatus from 'http-status';
 
 import { Controller } from './Controller';
-import {CoinsGetTrending} from "../../../../Contexts/CoinsCtx/Coins/application/CoinsGetTrending";
+import { CoinsGetTrending } from '../../../../Contexts/CoinsCtx/Coins/application/CoinsGetTrending';
 
 export class CoinGetTrendingController implements Controller {
   private readonly useCase: CoinsGetTrending;
@@ -11,8 +11,8 @@ export class CoinGetTrendingController implements Controller {
     this.useCase = useCase;
   }
 
-	async run(req: Request, res: Response): Promise<void> {
+  async run(req: Request, res: Response): Promise<void> {
     const response = await this.useCase.run();
-		res.status(httpStatus.OK).send(response);
-	}
+    res.status(httpStatus.OK).send(response);
+  }
 }

@@ -6,7 +6,7 @@ type TypeCoin = {
   marketCap: string;
   priceChange24hAgo: string;
   symbol: string;
-  canFavorite: boolean
+  canFavorite: boolean;
 };
 
 export class Coin {

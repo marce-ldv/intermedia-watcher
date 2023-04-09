@@ -1,5 +1,5 @@
-import {UserRepository} from "../domain/UserRepository";
-import {TypeUser} from "../domain/User";
+import { UserRepository } from '../domain/UserRepository';
+import { TypeUser } from '../domain/User';
 
 export class UserRegister {
   private readonly repository: UserRepository;

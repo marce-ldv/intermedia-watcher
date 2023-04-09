@@ -6,20 +6,20 @@ let repository: CourseRepositoryMock;
 let creator: CoinsCreator;
 
 beforeEach(() => {
-	repository = new CourseRepositoryMock();
-	creator = new CoinsCreator(repository);
+  repository = new CourseRepositoryMock();
+  creator = new CoinsCreator(repository);
 });
 
 describe('CourseCreator', () => {
-	it('should create a valid course', async () => {
-		const id = 'some-id';
-		const name = 'some-name';
-		const duration = 'some-duration';
+  it('should create a valid course', async () => {
+    const id = 'some-id';
+    const name = 'some-name';
+    const duration = 'some-duration';
 
-		const coin = new Coin({ id, name, duration });
+    const coin = new Coin({ id, name, duration });
 
-		await creator.run(id, name, duration);
+    await creator.run(id, name, duration);
 
-		repository.assertLastSavedCourseIs(coin);
-	});
+    repository.assertLastSavedCourseIs(coin);
+  });
 });
