@@ -1,5 +1,5 @@
+import type { ReactNode } from "react";
 import { CustomNavbar } from "~/components/molecules/Navbar";
-import {ReactNode} from "react";
 
 export const MainLayout = ({ children }: { children: ReactNode }) => {
   return (

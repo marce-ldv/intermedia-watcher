@@ -10,6 +10,7 @@ export default async function handler(
     case 'GET':
       try {
         const response = await fetch('http://localhost:5000/coins/trending');
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const data = await response.json();
 
         res.status(200).json(data);
@@ -19,6 +20,7 @@ export default async function handler(
       break;
     default:
       res.setHeader('Allow', ['GET']);
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 }

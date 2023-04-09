@@ -35,7 +35,10 @@
 
     "lint:backend": "yarn workspace backend lint",
     "lint:frontend": "yarn workspace frontend lint",
-    "lint": "yarn lint:backend && yarn lint:frontend"
+    "lint": "yarn lint:backend && yarn lint:frontend",
+
+    "format:backend": "yarn workspace backend format",
+    "format:frontend": "yarn workspace frontend format"
   },
   "dependencies": {
     "concurrently": "^8.0.1"
