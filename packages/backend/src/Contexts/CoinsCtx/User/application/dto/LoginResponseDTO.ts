@@ -4,5 +4,6 @@ export interface LoginResponseDTO {
     username: string;
     email: string;
     favorites: string[];
+    role: string;
   };
 }
