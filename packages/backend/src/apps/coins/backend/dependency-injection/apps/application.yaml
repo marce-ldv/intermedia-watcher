@@ -18,3 +18,7 @@ services:
   Apps.coins.controllers.UserLoginController:
     class: ../../controllers/UserLoginController
     arguments: [ '@Coins.auth.application.UserLogin', '@Coins.auth.application.ValidateUserService', '@Coins.auth.application.JWTService' ]
+
+  Apps.coins.controllers.AddFavoritesController:
+    class: ../../controllers/AddFavoritesController
+    arguments: [ '@Coins.auth.application.AddFavoritesService' ]

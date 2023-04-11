@@ -53,7 +53,7 @@ export class SanityUserRepository implements UserRepository {
       favorites: response.data.result[0].favorites,
     });
   }
-  
+
   async findAllFavorites(user: { email: string }): Promise<string[]> {
     const response = await axios.get('https://6fyyl8sn.api.sanity.io/v1/data/query/user', {
       params: {
@@ -66,5 +66,44 @@ export class SanityUserRepository implements UserRepository {
     });
 
     return response.data.result[0].favorites;
+  }
+
+  async addFavorite(user: { email: string; favorite: string }): Promise<void> {
+    const response = await axios.get('https://6fyyl8sn.api.sanity.io/v1/data/query/user', {
+      params: {
+        query: `*[_type == "user" && email == "${user.email}"]`
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${SANITY_TOKEN}`
+      }
+    });
+
+    // const favorites = this.findAllFavorites({ email: user.email })
+    const favorites = response.data.result[0].favorites;
+
+    const r = await axios.post(
+      'https://6fyyl8sn.api.sanity.io/v1/data/mutate/user',
+      {
+        mutations: [
+          {
+            patch: {
+              id: response.data.result[0]._id,
+              set: {
+                favorites: [...favorites, user.favorite]
+              }
+            }
+          }
+        ]
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${SANITY_TOKEN}`
+        }
+      }
+    );
+
+    return r.data;
   }
 }
