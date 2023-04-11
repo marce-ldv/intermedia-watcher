@@ -7,7 +7,7 @@ const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
 
 export class SanityCoinsRepository implements CoinRepository {
   async getAll(coin: Coin): Promise<Coin[]> {
-    const response = await axios.get(`https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/query/coin`, {
+    const response = await axios.get(`https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/query/user`, {
       params: {
         query: `*[_type == "coin"]`
       },
@@ -21,7 +21,7 @@ export class SanityCoinsRepository implements CoinRepository {
   }
 
   async getTrending(coin: Coin): Promise<Coin[]> {
-    const response = await axios.get(`https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/query/coin`, {
+    const response = await axios.get(`https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/query/user`, {
       params: {
         query: `*[_type == "coin" && trending == true]`
       },
@@ -36,7 +36,7 @@ export class SanityCoinsRepository implements CoinRepository {
 
   async save(coin: Coin): Promise<void> {
     const response = await axios.post(
-      `https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/mutate/coin`,
+      `https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/mutate/user`,
       {
         mutations: [
           {
@@ -44,22 +44,26 @@ export class SanityCoinsRepository implements CoinRepository {
               _type: 'coin',
               name: coin.name,
               symbol: coin.symbol,
-              image: coin.logo,
-              currentPrice: coin.price,
-              priceChangePercentage_24h: coin.priceChange24hAgo,
-              marketCap: coin.marketCap,
-              canFavorite: coin.canFavorite,
+              logo: coin.logo,
+              canFavorite: coin.canFavorite
             }
           }
         ]
-      });
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${SANITY_TOKEN}`
+        }
+      }
+    );
 
     return response.data;
   }
 
   async update(coin: Coin): Promise<void> {
     const response = await axios.post(
-      `https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/mutate/coin`,
+      `https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/mutate/user`,
       {
         mutations: [
           {
@@ -68,16 +72,20 @@ export class SanityCoinsRepository implements CoinRepository {
               set: {
                 name: coin.name,
                 symbol: coin.symbol,
-                image: coin.logo,
-                currentPrice: coin.price,
-                priceChangePercentage_24h: coin.priceChange24hAgo,
-                marketCap: coin.marketCap,
-                canFavorite: coin.canFavorite,
+                logo: coin.logo,
+                canFavorite: coin.canFavorite
               }
             }
           }
         ]
-      });
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${SANITY_TOKEN}`
+        }
+      }
+    );
 
     return response.data;
   }

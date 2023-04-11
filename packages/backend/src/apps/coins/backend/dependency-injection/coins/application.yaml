@@ -38,3 +38,11 @@ services:
   Coins.user.application.GetAllFavoritesService:
     class: ../../../../../Contexts/CoinsCtx/User/application/GetAllFavoritesService
     arguments: [ '@Coins.user.domain.UserRepository' ]
+
+  Coins.coins.domain.CoinRepository:
+    class: ../../../../../Contexts/CoinsCtx/Coins/infrastructure/SanityCoinsRepository
+    arguments: [ '' ]
+
+  Coins.coins.application.CoinsAddCoinService:
+    class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsAddCoinService
+    arguments: [ '@Coins.coins.domain.CoinRepository' ]

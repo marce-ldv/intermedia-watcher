@@ -4,6 +4,11 @@ export default {
   title: 'Coin',
   fields: [
     {
+      name: 'id',
+      type: 'string',
+      title: 'Id',
+    },
+    {
       name: 'name',
       type: 'string',
       title: 'Name',
@@ -13,5 +18,15 @@ export default {
       type: 'string',
       title: 'Symbol',
     },
+    {
+      name: 'logo',
+      type: 'image',
+      title: 'Logo',
+    },
+    {
+      name: 'canFavorite',
+      type: 'boolean',
+      title: 'Can Favorite',
+    }
   ]
 }
