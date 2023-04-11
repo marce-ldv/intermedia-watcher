@@ -4,21 +4,21 @@ services:
     arguments: [ ]
 
   Apps.coins.controllers.CoinGetAllController:
-    class: ../../controllers/CoinGetAllController
+    class: ../../controllers/Coins/CoinGetAllController
     arguments: [ '@Coins.coins.application.CoinsGetAll' ]
 
   Apps.coins.controllers.CoinGetTrendingController:
-    class: ../../controllers/CoinGetTrendingController
+    class: ../../controllers/Coins/CoinGetTrendingController
     arguments: [ '@Coins.coins.application.CoinsGetTrending' ]
 
   Apps.coins.controllers.UserRegisterController:
-    class: ../../controllers/UserRegisterController
+    class: ../../controllers/User/UserRegisterController
     arguments: [ '@Coins.user.application.UserRegister' ]
 
   Apps.coins.controllers.UserLoginController:
-    class: ../../controllers/UserLoginController
+    class: ../../controllers/User/UserLoginController
     arguments: [ '@Coins.user.application.UserLogin', '@Coins.user.application.ValidateUserService', '@Coins.user.application.JWTService' ]
 
   Apps.coins.controllers.AddFavoritesController:
-    class: ../../controllers/AddFavoritesController
+    class: ../../controllers/User/AddFavoritesController
     arguments: [ '@Coins.user.application.AddFavoritesService' ]

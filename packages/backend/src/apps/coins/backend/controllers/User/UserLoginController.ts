@@ -1,12 +1,12 @@
 import type { Request, Response } from 'express';
 import httpStatus from 'http-status';
 
-import { Controller } from './Controller';
-import { UserLogin } from '../../../../Contexts/CoinsCtx/User/application/UserLogin';
-import { TypeUser } from '../../../../Contexts/CoinsCtx/User/domain/User';
-import { ValidateUserService } from '../../../../Contexts/CoinsCtx/User/application/ValidateUserService';
-import { LoginResponseDTO } from '../../../../Contexts/CoinsCtx/User/application/dto/LoginResponseDTO';
-import { JWTService } from '../../../../Contexts/CoinsCtx/User/application/JWTService';
+import { Controller } from '../Controller';
+import { UserLogin } from '../../../../../Contexts/CoinsCtx/User/application/UserLogin';
+import { TypeUser } from '../../../../../Contexts/CoinsCtx/User/domain/User';
+import { ValidateUserService } from '../../../../../Contexts/CoinsCtx/User/application/ValidateUserService';
+import { LoginResponseDTO } from '../../../../../Contexts/CoinsCtx/User/application/dto/LoginResponseDTO';
+import { JWTService } from '../../../../../Contexts/CoinsCtx/User/application/JWTService';
 
 export class UserLoginController implements Controller {
   private readonly useCaseGetUser: UserLogin;

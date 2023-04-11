@@ -44,8 +44,6 @@ export class SanityUserRepository implements UserRepository {
       }
     });
 
-    // add to favorites
-
     return new User({
       email: response.data.result[0].email,
       password: response.data.result[0].password,

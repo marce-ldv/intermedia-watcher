@@ -1,11 +1,11 @@
 import type { Request, Response } from 'express';
 import httpStatus from 'http-status';
 
-import { Controller } from './Controller';
-import { UserRegister } from '../../../../Contexts/CoinsCtx/User/application/UserRegister';
-import { TypeUser } from '../../../../Contexts/CoinsCtx/User/domain/User';
+import { Controller } from '../Controller';
+import { UserRegister } from '../../../../../Contexts/CoinsCtx/User/application/UserRegister';
+import { TypeUser } from '../../../../../Contexts/CoinsCtx/User/domain/User';
 
-export class AddFavoritesController implements Controller {
+export class UserRegisterController implements Controller {
   private readonly useCase: UserRegister;
 
   constructor(useCase: UserRegister) {

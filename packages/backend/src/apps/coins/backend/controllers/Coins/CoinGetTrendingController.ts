@@ -1,8 +1,8 @@
 import type { Request, Response } from 'express';
 import httpStatus from 'http-status';
 
-import { Controller } from './Controller';
-import { CoinsGetTrending } from '../../../../Contexts/CoinsCtx/Coins/application/CoinsGetTrending';
+import { Controller } from '../Controller';
+import { CoinsGetTrending } from '../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetTrending';
 
 export class CoinGetTrendingController implements Controller {
   private readonly useCase: CoinsGetTrending;

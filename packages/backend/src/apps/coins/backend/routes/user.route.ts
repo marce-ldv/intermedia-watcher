@@ -1,9 +1,9 @@
 import { Request, Response, Router } from 'express';
 
 import container from '../dependency-injection';
-import { UserRegisterController } from '../controllers/UserRegisterController';
-import { UserLoginController } from '../controllers/UserLoginController';
-import { AddFavoritesController } from "../controllers/AddFavoritesController";
+import { UserRegisterController } from '../controllers/User/UserRegisterController';
+import { UserLoginController } from '../controllers/User/UserLoginController';
+import { AddFavoritesController } from "../controllers/User/AddFavoritesController";
 
 export const register = (router: Router): void => {
   const userRegisterController = container.get<UserRegisterController>('Apps.coins.controllers.UserRegisterController');
