@@ -11,26 +11,26 @@ services:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetTrending
     arguments: [ '@Coins.coins.application.CoinGeckoService' ]
 
-  Coins.auth.domain.UserRepository:
-    class: ../../../../../Contexts/CoinsCtx/Auth/infrastructure/SanityUserRepository
+  Coins.user.domain.UserRepository:
+    class: ../../../../../Contexts/CoinsCtx/User/infrastructure/SanityUserRepository
     arguments: [ '' ]
 
-  Coins.auth.application.UserRegister:
-    class: ../../../../../Contexts/CoinsCtx/Auth/application/UserRegister
-    arguments: [ '@Coins.auth.domain.UserRepository' ]
+  Coins.user.application.UserRegister:
+    class: ../../../../../Contexts/CoinsCtx/User/application/UserRegister
+    arguments: [ '@Coins.user.domain.UserRepository' ]
 
-  Coins.auth.application.UserLogin:
-    class: ../../../../../Contexts/CoinsCtx/Auth/application/UserLogin
-    arguments: [ '@Coins.auth.domain.UserRepository' ]
+  Coins.user.application.UserLogin:
+    class: ../../../../../Contexts/CoinsCtx/User/application/UserLogin
+    arguments: [ '@Coins.user.domain.UserRepository' ]
 
-  Coins.auth.application.ValidateUserService:
-    class: ../../../../../Contexts/CoinsCtx/Auth/application/ValidateUserService
+  Coins.user.application.ValidateUserService:
+    class: ../../../../../Contexts/CoinsCtx/User/application/ValidateUserService
     arguments: [ '' ]
 
-  Coins.auth.application.JWTService:
-    class: ../../../../../Contexts/CoinsCtx/Auth/application/JWTService
+  Coins.user.application.JWTService:
+    class: ../../../../../Contexts/CoinsCtx/User/application/JWTService
     arguments: [ '' ]
 
-  Coins.auth.application.AddFavoritesService:
-    class: ../../../../../Contexts/CoinsCtx/Auth/application/AddFavoritesService
-    arguments: [ '@Coins.auth.domain.UserRepository' ]
+  Coins.user.application.AddFavoritesService:
+    class: ../../../../../Contexts/CoinsCtx/User/application/AddFavoritesService
+    arguments: [ '@Coins.user.domain.UserRepository' ]

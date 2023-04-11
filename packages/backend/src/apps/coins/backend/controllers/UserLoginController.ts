@@ -2,11 +2,11 @@ import type { Request, Response } from 'express';
 import httpStatus from 'http-status';
 
 import { Controller } from './Controller';
-import { UserLogin } from '../../../../Contexts/CoinsCtx/Auth/application/UserLogin';
-import { TypeUser } from '../../../../Contexts/CoinsCtx/Auth/domain/User';
-import { ValidateUserService } from '../../../../Contexts/CoinsCtx/Auth/application/ValidateUserService';
-import { LoginResponseDTO } from '../../../../Contexts/CoinsCtx/Auth/application/dto/LoginResponseDTO';
-import { JWTService } from '../../../../Contexts/CoinsCtx/Auth/application/JWTService';
+import { UserLogin } from '../../../../Contexts/CoinsCtx/User/application/UserLogin';
+import { TypeUser } from '../../../../Contexts/CoinsCtx/User/domain/User';
+import { ValidateUserService } from '../../../../Contexts/CoinsCtx/User/application/ValidateUserService';
+import { LoginResponseDTO } from '../../../../Contexts/CoinsCtx/User/application/dto/LoginResponseDTO';
+import { JWTService } from '../../../../Contexts/CoinsCtx/User/application/JWTService';
 
 export class UserLoginController implements Controller {
   private readonly useCaseGetUser: UserLogin;

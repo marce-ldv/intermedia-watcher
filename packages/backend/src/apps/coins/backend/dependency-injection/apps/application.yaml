@@ -13,12 +13,12 @@ services:
 
   Apps.coins.controllers.UserRegisterController:
     class: ../../controllers/UserRegisterController
-    arguments: [ '@Coins.auth.application.UserRegister' ]
+    arguments: [ '@Coins.user.application.UserRegister' ]
 
   Apps.coins.controllers.UserLoginController:
     class: ../../controllers/UserLoginController
-    arguments: [ '@Coins.auth.application.UserLogin', '@Coins.auth.application.ValidateUserService', '@Coins.auth.application.JWTService' ]
+    arguments: [ '@Coins.user.application.UserLogin', '@Coins.user.application.ValidateUserService', '@Coins.user.application.JWTService' ]
 
   Apps.coins.controllers.AddFavoritesController:
     class: ../../controllers/AddFavoritesController
-    arguments: [ '@Coins.auth.application.AddFavoritesService' ]
+    arguments: [ '@Coins.user.application.AddFavoritesService' ]
