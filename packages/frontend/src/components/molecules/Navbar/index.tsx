@@ -1,7 +1,31 @@
 import { Avatar, DarkThemeToggle, Dropdown, Navbar } from "flowbite-react";
 import Image from "next/image";
+import jwtDecode from "jwt-decode";
+
+const useNavbar = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
+
+  const handleDecode = () => {
+    if (typeof window === "undefined") return;
+    const token = localStorage.getItem("token");
+    if (!token) return;
+    const { payload } = jwtDecode(token);
+
+    return payload;
+  }
+
+
+  return { handleLogout, user: handleDecode() };
+}
 
 export const CustomNavbar = () => {
+  const { handleLogout, user } = useNavbar();
+  console.log('user', user)
+
+
   return (
     <Navbar
       fluid={true}
@@ -34,16 +58,14 @@ export const CustomNavbar = () => {
           }
         >
           <Dropdown.Header>
-            <span className="block text-sm">Marcelo Ldv</span>
-            <span className="block truncate text-sm font-medium">
-              marcelo@fake.com
-            </span>
+            <span className="block text-sm">{user?.username}</span>
+            <span className="block truncate text-sm font-medium">{user?.email}</span>
           </Dropdown.Header>
           <Dropdown.Item>Dashboard</Dropdown.Item>
           <Dropdown.Item>Settings</Dropdown.Item>
           <Dropdown.Item>Earnings</Dropdown.Item>
           <Dropdown.Divider />
-          <Dropdown.Item>Sign out</Dropdown.Item>
+          <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
         </Dropdown>
         <Navbar.Toggle />
       </div>

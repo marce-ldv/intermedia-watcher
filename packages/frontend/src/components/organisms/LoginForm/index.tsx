@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import {useRouter} from "next/router";
 
 type TypeUserAuth = { email: string; password: string }
 
 const useAuth = () => {
+  const router = useRouter()
   const login = async (data: TypeUserAuth): Promise<void> => {
     const response = await axios.post("api/login", data);
 
@@ -14,6 +16,7 @@ const useAuth = () => {
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
     localStorage.setItem("token", response.data.token);
+    await router.push("/")
   };
   return {
     login,
