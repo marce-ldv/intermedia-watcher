@@ -16,7 +16,7 @@ export class UserLogin {
 
       return user;
     } catch (error) {
-      return new User({ email: '', password: '', username: '' })
+      return new User({ email: '', password: '', username: '', favorites: [] })
     }
   }
 }

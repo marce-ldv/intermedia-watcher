@@ -37,15 +37,21 @@ export class UserLoginController implements Controller {
     const token = this.useCaseJWT.generateToken({
       payload: {
         email: user.email,
-        username: user.username
+        username: user.username,
+        role: 'admin'
       }
     });
+
+    // save token in session with express-session
+    // @ts-ignore
+    // req.session.token = token;
 
     const response: LoginResponseDTO = {
       token,
       user: {
         username: user.username,
-        email: user.email
+        email: user.email,
+        favorites: user.favorites,
       }
     };
 

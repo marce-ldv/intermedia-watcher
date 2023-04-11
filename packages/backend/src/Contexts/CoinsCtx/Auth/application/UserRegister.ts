@@ -12,7 +12,8 @@ export class UserRegister {
     return this.repository.register({
       email: body.email,
       password: body.password,
-      username: body.username
+      username: body.username,
+      favorites: body.favorites || [],
     });
   }
 }

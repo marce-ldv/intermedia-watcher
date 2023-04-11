@@ -18,5 +18,15 @@ export default {
       type: 'string',
       title: 'Password',
     },
+    {
+      name: 'favorites',
+      type: 'array',
+      title: 'Favorites',
+      of: [
+        {
+          type: 'string',
+        }
+      ],
+    }
   ]
 }

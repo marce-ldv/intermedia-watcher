@@ -44,10 +44,27 @@ export class SanityUserRepository implements UserRepository {
       }
     });
 
+    // add to favorites
+
     return new User({
       email: response.data.result[0].email,
       password: response.data.result[0].password,
-      username: response.data.result[0].username
+      username: response.data.result[0].username,
+      favorites: response.data.result[0].favorites,
     });
+  }
+  
+  async findAllFavorites(user: { email: string }): Promise<string[]> {
+    const response = await axios.get('https://6fyyl8sn.api.sanity.io/v1/data/query/user', {
+      params: {
+        query: `*[_type == "user" && email == "${user.email}"]`
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${SANITY_TOKEN}`
+      }
+    });
+
+    return response.data.result[0].favorites;
   }
 }

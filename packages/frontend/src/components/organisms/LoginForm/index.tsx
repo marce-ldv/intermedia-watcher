@@ -11,6 +11,9 @@ const useAuth = () => {
     if (!response) {
       throw new Error("Failed to login");
     }
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
+    localStorage.setItem("token", response.data.token);
   };
   return {
     login,

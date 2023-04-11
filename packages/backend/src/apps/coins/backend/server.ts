@@ -6,8 +6,12 @@ import Router from 'express-promise-router';
 import helmet from 'helmet';
 import * as http from 'http';
 import httpStatus from 'http-status';
+import session from 'express-session';
+import cors from 'cors';
 
 import { registerRoutes } from './routes';
+
+const sessionSecret = process.env.SESSION_SECRET || 'secret';
 
 export class Server {
   private readonly express: express.Express;
@@ -27,6 +31,15 @@ export class Server {
     const router = Router();
     router.use(errorHandler());
     this.express.use(router);
+    this.express.use(
+      session({
+        secret: sessionSecret,
+        resave: false,
+        saveUninitialized: true,
+        cookie: { secure: true }
+      })
+    );
+    this.express.use(cors());
 
     registerRoutes(router);
 
