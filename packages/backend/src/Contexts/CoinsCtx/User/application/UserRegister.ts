@@ -14,6 +14,7 @@ export class UserRegister {
       password: body.password,
       username: body.username,
       favorites: body.favorites || [],
+      role: body.role,
     });
   }
 }

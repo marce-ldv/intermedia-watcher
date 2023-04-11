@@ -19,7 +19,9 @@ export class SanityUserRepository implements UserRepository {
               _type: 'user',
               email: user.email,
               username: user.username,
-              password: handleEncryptedPassword(user.password)
+              password: handleEncryptedPassword(user.password),
+              favorites: [],
+              role: user.role
             }
           }
         ]
@@ -49,6 +51,7 @@ export class SanityUserRepository implements UserRepository {
       password: response.data.result[0].password,
       username: response.data.result[0].username,
       favorites: response.data.result[0].favorites,
+      role: response.data.result[0].role
     });
   }
 

@@ -19,14 +19,25 @@ export default {
       title: 'Password',
     },
     {
+      name: 'role',
+      type: 'string',
+      title: 'Role',
+      options: {
+        list: [
+          {title: 'Admin', value: 'admin'},
+          {title: 'User', value: 'user'},
+        ],
+      },
+    },
+    {
       name: 'favorites',
       type: 'array',
       title: 'Favorites',
       of: [
         {
           type: 'string',
-        }
+        },
       ],
-    }
-  ]
+    },
+  ],
 }
