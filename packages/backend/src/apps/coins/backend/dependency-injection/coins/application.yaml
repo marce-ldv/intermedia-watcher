@@ -34,3 +34,7 @@ services:
   Coins.user.application.AddFavoritesService:
     class: ../../../../../Contexts/CoinsCtx/User/application/AddFavoritesService
     arguments: [ '@Coins.user.domain.UserRepository' ]
+
+  Coins.user.application.GetAllFavoritesService:
+    class: ../../../../../Contexts/CoinsCtx/User/application/GetAllFavoritesService
+    arguments: [ '@Coins.user.domain.UserRepository' ]

@@ -22,3 +22,7 @@ services:
   Apps.coins.controllers.AddFavoritesController:
     class: ../../controllers/User/AddFavoritesController
     arguments: [ '@Coins.user.application.AddFavoritesService' ]
+
+  Apps.coins.controllers.UserGetAllFavoritesController:
+    class: ../../controllers/User/UserGetAllFavoritesController
+    arguments: [ '@Coins.user.application.GetAllFavoritesService' ]
