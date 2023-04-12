@@ -12,8 +12,9 @@ export default async function handler(
       try {
         const response = await axios.get(
           "http://localhost:5000/user/favorites", {
-            params: {
-              email: req.query.email,
+            data: {
+              email: 'marce3@test.com',
+              // email: req.query.email,
             }
           }
         );

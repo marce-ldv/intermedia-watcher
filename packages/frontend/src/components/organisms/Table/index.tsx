@@ -1,46 +1,49 @@
 import { columns } from "~/components/organisms/Table/columns";
 import { useEffect, useState } from "react";
-import { getTrendingCoins } from "~/repository/coin/getTrendingCoins";
 import type { Coin } from "~/domain/Coin";
 import Image from "next/image";
 import { Checkbox, Table } from "flowbite-react";
 import axios from "axios";
+import { getTrendingCoins } from "~/repository/coin/getTrendingCoins";
+import { getAllFavoritesUser } from "~/repository/user/getAllFavorites";
 
 const useTable = () => {
   const [data, setData] = useState<Coin[]>([]);
+  const [favorites, setFavorites] = useState<string[]>([]);
 
   useEffect(() => {
     const handleData = async (): Promise<void> => {
-      const data = await getTrendingCoins();
-      setData(data);
+      const [trendingData, favoritesData] = await Promise.all([
+        getTrendingCoins(),
+        getAllFavoritesUser(),
+      ]);
+      setData(trendingData);
+      setFavorites(favoritesData);
     };
 
     void handleData();
   }, []);
-
-  // const handleClickFavorite = (id: string) => {
-  //   const newData = data.map((item) => {
-  //     if (item.id === id) {
-  //       return {
-  //         ...item,
-  //         canFavorite: !item.canFavorite,
-  //       };
-  //     }
-  //     return item;
-  //   });
-  //   setData(newData);
-  // }
 
   const handleClickFavorite = async (id: string) => {
     await axios.post("api/add_favorite", {
       favorites: id,
       email: "marce3@test.com",
     });
-  }
+  };
+
+  const newData = data.map((item) => {
+    if (favorites.includes(item.id)) {
+      return {
+        ...item,
+        isFavorite: true,
+      };
+    }
+    return item;
+  });
 
   return {
     columns,
-    data,
+    data: newData,
     handleClickFavorite,
   };
 };
@@ -58,7 +61,7 @@ export const CustomTable = () => {
         ))}
       </Table.Head>
       <Table.Body className="divide-y">
-        {data.map((row) => (
+        {data.map((row: Coin) => (
           <Table.Row
             key={row.name}
             className="bg-white dark:border-gray-700 dark:bg-gray-800"
@@ -86,9 +89,13 @@ export const CustomTable = () => {
               </span>
             </Table.Cell>
             <Table.Cell className="!p-4">
-              <Checkbox id="remember" onClick={() => {
-                void handleClickFavorite(row.id)
-              }} checked={row.canFavorite} />
+              <Checkbox
+                id="remember"
+                onClick={() => {
+                  void handleClickFavorite(row.id);
+                }}
+                checked={row.isFavorite}
+              />
             </Table.Cell>
           </Table.Row>
         ))}

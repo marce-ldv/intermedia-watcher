@@ -7,4 +7,5 @@ export interface Coin {
   priceChange24hAgo: string;
   symbol: string;
   canFavorite: boolean;
+  isFavorite?: boolean;
 }
