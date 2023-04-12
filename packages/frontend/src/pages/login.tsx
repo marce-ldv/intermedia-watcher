@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { LoginForm } from "~/components/organisms/LoginForm";
+import { getCookie } from "cookies-next";
 
 const Login: NextPage = () => {
   return (
@@ -18,3 +19,14 @@ const Login: NextPage = () => {
 };
 
 export default Login;
+
+export function getServerSideProps({ req, res }: any) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const token = getCookie("token", { req, res }) || "";
+
+  return {
+    props: {
+      token
+    },
+  };
+}

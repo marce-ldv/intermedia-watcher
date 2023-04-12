@@ -1,12 +1,14 @@
 import { Avatar, DarkThemeToggle, Dropdown, Navbar } from "flowbite-react";
 import Image from "next/image";
 import { useLocalStorage } from "~/hooks/useLocalStorage";
+import { removeCookies } from "cookies-next";
 
 const useNavbar = () => {
   const user = useLocalStorage("token");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    removeCookies("token");
     window.location.href = "/login";
   };
 
@@ -49,7 +51,9 @@ export const CustomNavbar = () => {
         >
           <Dropdown.Header>
             <span className="block text-sm">{user.username}</span>
-            <span className="block truncate text-sm font-medium">{user.email}</span>
+            <span className="block truncate text-sm font-medium">
+              {user.email}
+            </span>
           </Dropdown.Header>
           <Dropdown.Item>Dashboard</Dropdown.Item>
           <Dropdown.Item>Settings</Dropdown.Item>

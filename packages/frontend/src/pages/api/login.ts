@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
+import {setCookie} from "cookies-next";
 // import nextSession from "next-session";
 // const getSession = nextSession();
 
@@ -24,6 +25,9 @@ export default async function handler(
         const response = await axios.post(
           "http://localhost:5000/user/login", user
         );
+
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        setCookie('token', response.data.token, { req, res });
 
         // TODO: save token in session with next-session or next-auth
         // session.token = "token";

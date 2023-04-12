@@ -3,6 +3,7 @@ import Head from "next/head";
 import { CustomTable } from "~/components/organisms/Table";
 import { Suspense } from "react";
 import { Spinner } from "flowbite-react";
+import { getCookie } from "cookies-next";
 
 const Home: NextPage = () => {
   return (
@@ -22,3 +23,14 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export function getServerSideProps({ req, res }: any) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const token = getCookie("token", { req, res }) || "";
+
+  return {
+    props: {
+      token
+    },
+  };
+}
