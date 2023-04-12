@@ -14,9 +14,10 @@ export default async function handler(
     case "POST":
       try {
         const response = await axios.post(
-          "http://localhost:5000/user/favorites", {
+          "http://localhost:5000/user/favorites",
+          {
             email: body.email,
-            favorites: body.favorites,
+            favorites: body.favoriteId,
           }
         );
 

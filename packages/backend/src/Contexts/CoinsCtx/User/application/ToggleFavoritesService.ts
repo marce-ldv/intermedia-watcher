@@ -1,6 +1,6 @@
 import { UserRepository } from '../domain/UserRepository';
 
-export class AddFavoritesService {
+export class ToggleFavoritesService {
   private readonly repository: UserRepository;
 
   constructor(userService: UserRepository) {
@@ -8,7 +8,7 @@ export class AddFavoritesService {
   }
 
   async run(body: { username: string; email: string; password: string; favorites: string }): Promise<void> {
-    await this.repository.addFavorite({
+    await this.repository.toggleFavorite({
       email: body.email,
       favorite: body.favorites
     });

@@ -31,8 +31,8 @@ services:
     class: ../../../../../Contexts/CoinsCtx/User/application/JWTService
     arguments: [ '' ]
 
-  Coins.user.application.AddFavoritesService:
-    class: ../../../../../Contexts/CoinsCtx/User/application/AddFavoritesService
+  Coins.user.application.ToggleFavoritesService:
+    class: ../../../../../Contexts/CoinsCtx/User/application/ToggleFavoritesService
     arguments: [ '@Coins.user.domain.UserRepository' ]
 
   Coins.user.application.GetAllFavoritesService:

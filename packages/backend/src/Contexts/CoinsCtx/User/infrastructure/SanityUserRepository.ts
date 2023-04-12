@@ -69,7 +69,7 @@ export class SanityUserRepository implements UserRepository {
     return response.data.result[0].favorites;
   }
 
-  async addFavorite(user: { email: string; favorite: string }): Promise<void> {
+  async toggleFavorite(user: { email: string; favorite: string }): Promise<void> {
     const response = await axios.get('https://6fyyl8sn.api.sanity.io/v1/data/query/user', {
       params: {
         query: `*[_type == "user" && email == "${user.email}"]`
@@ -91,7 +91,9 @@ export class SanityUserRepository implements UserRepository {
             patch: {
               id: response.data.result[0]._id,
               set: {
-                favorites: [...favorites, user.favorite]
+                favorites: favorites.includes(user.favorite)
+                  ? favorites.filter((favorite: string) => favorite !== user.favorite)
+                  : [...favorites, user.favorite]
               }
             }
           }

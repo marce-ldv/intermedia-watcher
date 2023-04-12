@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import type { Coin } from "~/domain/Coin";
 import Image from "next/image";
 import { Checkbox, Table } from "flowbite-react";
-import axios from "axios";
 import { getTrendingCoins } from "~/repository/coin/getTrendingCoins";
 import { getAllFavoritesUser } from "~/repository/user/getAllFavorites";
+import {toggleFavoritesUser} from "~/repository/user/toggleFavorites";
 
 const useTable = () => {
   const [data, setData] = useState<Coin[]>([]);
@@ -24,11 +24,8 @@ const useTable = () => {
     void handleData();
   }, []);
 
-  const handleClickFavorite = async (id: string) => {
-    await axios.post("api/add_favorite", {
-      favorites: id,
-      email: "marce3@test.com",
-    });
+  const handleClickFavorite = async (favoriteId: string) => {
+    await toggleFavoritesUser({ favoriteId, email: 'marce3@test.com' });
   };
 
   const newData = data.map((item) => {
