@@ -5,48 +5,49 @@ import Image from "next/image";
 import { Checkbox, Table } from "flowbite-react";
 import { getTrendingCoins } from "~/repository/coin/getTrendingCoins";
 import { getAllFavoritesUser } from "~/repository/user/getAllFavorites";
-import {toggleFavoritesUser} from "~/repository/user/toggleFavorites";
+import { toggleFavoritesUser } from "~/repository/user/toggleFavorites";
 
 const useTable = () => {
   const [data, setData] = useState<Coin[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
 
-  useEffect(() => {
-    const handleData = async (): Promise<void> => {
-      const [trendingData, favoritesData] = await Promise.all([
-        getTrendingCoins(),
-        getAllFavoritesUser(),
-      ]);
-      setData(trendingData);
-      setFavorites(favoritesData);
-    };
+  const handleData = async (): Promise<void> => {
+    const [trendingData, favoritesData] = await Promise.all([
+      getTrendingCoins(),
+      getAllFavoritesUser(),
+    ]);
 
+    const newData = trendingData.map((item) => {
+      return {
+        ...item,
+        isFavorite: favoritesData.includes(item.id),
+      };
+    });
+
+    setFavorites(favoritesData);
+    setData(newData);
+  };
+
+  useEffect(() => {
     void handleData();
   }, []);
 
   const handleClickFavorite = async (favoriteId: string) => {
-    await toggleFavoritesUser({ favoriteId, email: 'marce3@test.com' });
-  };
+    await toggleFavoritesUser({ favoriteId, email: "marce3@test.com" });
 
-  const newData = data.map((item) => {
-    if (favorites.includes(item.id)) {
-      return {
-        ...item,
-        isFavorite: true,
-      };
-    }
-    return item;
-  });
+    await handleData();
+  };
 
   return {
     columns,
-    data: newData,
+    data,
     handleClickFavorite,
   };
 };
 
 export const CustomTable = () => {
   const { columns, data, handleClickFavorite } = useTable();
+  console.log("data", data);
 
   return (
     <Table hoverable={true}>
@@ -88,6 +89,7 @@ export const CustomTable = () => {
             <Table.Cell className="!p-4">
               <Checkbox
                 id="remember"
+                disabled={row.canFavorite}
                 onClick={() => {
                   void handleClickFavorite(row.id);
                 }}

@@ -8,12 +8,10 @@ interface ToggleFavoritesUser {
 export const toggleFavoritesUser = async ({
   favoriteId,
   email,
-}: ToggleFavoritesUser): Promise<string[]> => {
+}: ToggleFavoritesUser): Promise<void> => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { data } = await axios.post("api/toggle_favorite", {
+  await axios.post("api/toggle_favorite", {
     email,
     favoriteId,
   });
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return data;
 };
