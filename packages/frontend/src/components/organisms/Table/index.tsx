@@ -1,6 +1,6 @@
 import { columns } from "~/components/organisms/Table/columns";
 import { useEffect, useState } from "react";
-import { getTrendingCoins } from "~/repository/getTrendingCoins";
+import { getTrendingCoins } from "~/repository/coin/getTrendingCoins";
 import type { Coin } from "~/domain/Coin";
 import Image from "next/image";
 import { Checkbox, Table } from "flowbite-react";

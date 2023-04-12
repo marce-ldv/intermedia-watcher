@@ -5,8 +5,8 @@ const common = [
 
 const coins_backend = [
   ...common,
-  'tests/apps/coins/backend/features/**/*.feature',
-  '--require tests/apps/coins/backend/features/step_definitions/*.steps.ts'
+  'tests/apps/coin/backend/features/**/*.feature',
+  '--require tests/apps/coin/backend/features/step_definitions/*.steps.ts'
 ].join(' ');
 
 module.exports = {

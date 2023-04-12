@@ -8,10 +8,22 @@ export class CoinRepositoryMock implements CoinRepository {
     await this.mockSave(coin);
   }
 
-  assertLastSavedCourseIs(expected: Coin): void {
+  assertLastSavedCoinsIs(expected: Coin): void {
     const mock = this.mockSave.mock;
     const lastSavedCoin = (mock.calls[mock.calls.length - 1] as Coin[])[0];
     expect(lastSavedCoin).toBeInstanceOf(Coin);
     expect(lastSavedCoin.id).toEqual(expected.id);
+  }
+
+  getAll(coin: Coin): Promise<Coin[]> {
+    return Promise.resolve([]);
+  }
+
+  getTrending(coin: Coin): Promise<Coin[]> {
+    return Promise.resolve([]);
+  }
+
+  update(coin: Coin): Promise<void> {
+    return Promise.resolve(undefined);
   }
 }
