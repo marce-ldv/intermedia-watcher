@@ -1,30 +1,20 @@
 import { Avatar, DarkThemeToggle, Dropdown, Navbar } from "flowbite-react";
 import Image from "next/image";
-import jwtDecode from "jwt-decode";
+import { useLocalStorage } from "~/hooks/useLocalStorage";
 
 const useNavbar = () => {
+  const user = useLocalStorage("token");
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
   };
 
-  const handleDecode = () => {
-    if (typeof window === "undefined") return;
-    const token = localStorage.getItem("token");
-    if (!token) return;
-    const { payload } = jwtDecode(token);
-
-    return payload;
-  }
-
-
-  return { handleLogout, user: handleDecode() };
-}
+  return { handleLogout, user };
+};
 
 export const CustomNavbar = () => {
   const { handleLogout, user } = useNavbar();
-  console.log('user', user)
-
 
   return (
     <Navbar
@@ -58,8 +48,8 @@ export const CustomNavbar = () => {
           }
         >
           <Dropdown.Header>
-            <span className="block text-sm">{user?.username}</span>
-            <span className="block truncate text-sm font-medium">{user?.email}</span>
+            <span className="block text-sm">{user.username}</span>
+            <span className="block truncate text-sm font-medium">{user.email}</span>
           </Dropdown.Header>
           <Dropdown.Item>Dashboard</Dropdown.Item>
           <Dropdown.Item>Settings</Dropdown.Item>

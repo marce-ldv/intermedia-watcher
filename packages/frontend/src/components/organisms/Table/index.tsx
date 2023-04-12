@@ -4,6 +4,7 @@ import { getTrendingCoins } from "~/repository/getTrendingCoins";
 import type { Coin } from "~/domain/Coin";
 import Image from "next/image";
 import { Checkbox, Table } from "flowbite-react";
+import axios from "axios";
 
 const useTable = () => {
   const [data, setData] = useState<Coin[]>([]);
@@ -17,14 +18,35 @@ const useTable = () => {
     void handleData();
   }, []);
 
+  // const handleClickFavorite = (id: string) => {
+  //   const newData = data.map((item) => {
+  //     if (item.id === id) {
+  //       return {
+  //         ...item,
+  //         canFavorite: !item.canFavorite,
+  //       };
+  //     }
+  //     return item;
+  //   });
+  //   setData(newData);
+  // }
+
+  const handleClickFavorite = async (id: string) => {
+    await axios.post("api/add_favorite", {
+      favorites: id,
+      email: "marce3@test.com",
+    });
+  }
+
   return {
     columns,
     data,
+    handleClickFavorite,
   };
 };
 
 export const CustomTable = () => {
-  const { columns, data } = useTable();
+  const { columns, data, handleClickFavorite } = useTable();
 
   return (
     <Table hoverable={true}>
@@ -64,7 +86,9 @@ export const CustomTable = () => {
               </span>
             </Table.Cell>
             <Table.Cell className="!p-4">
-              <Checkbox id="remember" checked={row.canFavorite} />
+              <Checkbox id="remember" onClick={() => {
+                void handleClickFavorite(row.id)
+              }} checked={row.canFavorite} />
             </Table.Cell>
           </Table.Row>
         ))}
