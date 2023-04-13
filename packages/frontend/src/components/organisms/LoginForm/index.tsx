@@ -63,10 +63,6 @@ export const LoginForm = () => {
           {...register("password")}
         />
       </div>
-      <div className="flex items-center gap-2">
-        <Checkbox id="remember" />
-        <Label htmlFor="remember">Remember me</Label>
-      </div>
       <Button type="submit">Login</Button>
     </form>
   );

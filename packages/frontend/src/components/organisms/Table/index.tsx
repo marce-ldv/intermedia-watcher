@@ -40,8 +40,13 @@ const useTable = () => {
     await handleData();
   };
 
-  const handleDisabled = (canFavorite: any) => {
-    return !!(isLoggedIn && !canFavorite);
+  const handleDisabled = (canFavorite: boolean): boolean => {
+    console.log('canFavorite', canFavorite)
+    if (isLoggedIn || canFavorite) {
+      return false;
+    }
+
+    return true;
   };
 
   return {
@@ -50,11 +55,13 @@ const useTable = () => {
     handleClickFavorite,
     handleDisabled,
     user,
+    isLoggedIn,
   };
 };
 
 export const CustomTable = () => {
-  const { columns, data, handleClickFavorite, handleDisabled } = useTable();
+  const { columns, data, isLoggedIn, handleClickFavorite, handleDisabled } =
+    useTable();
 
   return (
     <Table hoverable={true}>
@@ -93,16 +100,22 @@ export const CustomTable = () => {
                 {row.priceChange24hAgo}
               </span>
             </Table.Cell>
-            <Table.Cell className="!p-4">
-              <Checkbox
-                id="remember"
-                disabled={() => handleDisabled(row.id)}
-                onClick={() => {
-                  void handleClickFavorite(row.canFavorite);
-                }}
-                checked={row.isFavorite}
-              />
-            </Table.Cell>
+            {isLoggedIn ? (
+              <Table.Cell className="!p-4">
+                <Checkbox
+                  id="remember"
+                  disabled={handleDisabled(row.canFavorite)}
+                  onClick={() => {
+                    void handleClickFavorite(row.id);
+                  }}
+                  checked={row.isFavorite}
+                />
+              </Table.Cell>
+            ) : (
+              <Table.Cell className="!p-4">
+                <div></div>
+              </Table.Cell>
+            )}
           </Table.Row>
         ))}
       </Table.Body>
