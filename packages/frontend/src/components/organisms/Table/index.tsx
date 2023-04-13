@@ -6,10 +6,12 @@ import { Checkbox, Table } from "flowbite-react";
 import { getTrendingCoins } from "~/repository/coin/getTrendingCoins";
 import { getAllFavoritesUser } from "~/repository/user/getAllFavorites";
 import { toggleFavoritesUser } from "~/repository/user/toggleFavorites";
+import { useGetUser } from "~/hooks/useGetUser";
 
 const useTable = () => {
   const [data, setData] = useState<Coin[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
+  const { user, isLoggedIn } = useGetUser();
 
   const handleData = async (): Promise<void> => {
     const [trendingData, favoritesData] = await Promise.all([
@@ -33,21 +35,26 @@ const useTable = () => {
   }, []);
 
   const handleClickFavorite = async (favoriteId: string) => {
-    await toggleFavoritesUser({ favoriteId, email: "marce3@test.com" });
+    await toggleFavoritesUser({ favoriteId, email: user.email });
 
     await handleData();
+  };
+
+  const handleDisabled = (canFavorite: any) => {
+    return !!(isLoggedIn && !canFavorite);
   };
 
   return {
     columns,
     data,
     handleClickFavorite,
+    handleDisabled,
+    user,
   };
 };
 
 export const CustomTable = () => {
-  const { columns, data, handleClickFavorite } = useTable();
-  console.log("data", data);
+  const { columns, data, handleClickFavorite, handleDisabled } = useTable();
 
   return (
     <Table hoverable={true}>
@@ -89,9 +96,9 @@ export const CustomTable = () => {
             <Table.Cell className="!p-4">
               <Checkbox
                 id="remember"
-                disabled={row.canFavorite}
+                disabled={() => handleDisabled(row.id)}
                 onClick={() => {
-                  void handleClickFavorite(row.id);
+                  void handleClickFavorite(row.canFavorite);
                 }}
                 checked={row.isFavorite}
               />

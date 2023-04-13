@@ -12,7 +12,6 @@ const Login: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className="text-4xl font-bold text-white">Intermedia Login</h1>
       <LoginForm />
     </>
   );
