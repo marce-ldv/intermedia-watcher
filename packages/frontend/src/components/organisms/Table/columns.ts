@@ -1,5 +1,9 @@
 export const columns = [
   {
+    Header: "",
+    accessor: "canFavorite",
+  },
+  {
     Header: "Name",
     accessor: "name",
   },
@@ -16,7 +20,7 @@ export const columns = [
     accessor: "marketCap",
   },
   {
-    Header: "Favorite",
-    accessor: "canFavorite",
+    Header: "Action",
+    accessor: "action",
   },
 ];

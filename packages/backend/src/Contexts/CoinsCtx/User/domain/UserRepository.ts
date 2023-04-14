@@ -3,6 +3,6 @@ import type { User } from './User';
 export interface UserRepository {
   register(user: User): Promise<void>;
   findUserByEmail(user: { email: string }): Promise<User>;
-  findAllFavorites(user: { email: string }): Promise<string[]>;
+  findAllFavorites(email: { email: string }): Promise<string[]>;
   toggleFavorite(user: { email: string; favorite: string }): Promise<any>;
 }

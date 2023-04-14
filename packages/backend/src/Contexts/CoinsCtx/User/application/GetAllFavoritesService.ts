@@ -7,9 +7,9 @@ export class GetAllFavoritesService {
     this.repository = userService;
   }
 
-  async run(body: { username: string; email: string; password: string; favorites: string }): Promise<string[]> {
+  async run(email: string): Promise<string[]> {
     return await this.repository.findAllFavorites({
-      email: body.email,
+      email
     });
   }
 }

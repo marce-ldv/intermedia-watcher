@@ -5,25 +5,29 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { method, cookies } = req;
+  const { method, body } = req;
+
+  const user = {
+    username: body.username,
+    email: body.email,
+    password: body.password,
+    role: body.role,
+  }
 
   switch (method) {
-    case "GET":
+    case "POST":
       try {
-        const response = await axios.get(
-          "http://localhost:5000/user/favorites", {
-            headers: {
-              token: cookies.token,
-            }
-          }
+        const response = await axios.post(
+          "http://localhost:5000/user/register", user
         );
+
         res.status(200).json(response.data);
       } catch (error) {
         res.status(400).json({ success: false });
       }
       break;
     default:
-      res.setHeader("Allow", ["GET"]);
+      res.setHeader("Allow", ["POST"]);
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       res.status(405).end(`Method ${method} Not Allowed`);
   }
