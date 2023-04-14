@@ -15,7 +15,14 @@ export class ToggleFavoritesController implements Controller {
 
   async run(req: Request<{}, {}, TypeUser>, res: Response): Promise<void> {
     const token = req.headers.token as string;
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
+
+    if (!token) {
+      res.status(httpStatus.FORBIDDEN).send({
+        message: 'Forbidden, you need to be logged to add/remove favorites'
+      });
+    }
+
+    const decoded = jwt.decode(token);
 
     // @ts-ignore
     const response = await this.useCase.run(req.body.favorites, decoded.payload.email);

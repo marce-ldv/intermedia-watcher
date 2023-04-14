@@ -1,8 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { CustomTable } from "~/components/organisms/Table";
-import { Suspense } from "react";
-import { Spinner } from "flowbite-react";
 import { getCookie } from "cookies-next";
 
 const Home: NextPage = () => {
@@ -14,10 +12,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/*<h1 className="text-4xl font-bold text-white">Intermedia Watcher</h1>*/}
-      <Suspense fallback={<Spinner />}>
-        <CustomTable />
-      </Suspense>
+      <CustomTable />
     </>
   );
 };
@@ -30,7 +25,7 @@ export function getServerSideProps({ req, res }: any) {
 
   return {
     props: {
-      token
+      token,
     },
   };
 }

@@ -15,11 +15,16 @@ export class UserGetAllFavoritesController implements Controller {
 
   async run(req: Request<{}, {}, TypeUser>, res: Response): Promise<void> {
     const token = req.headers.token as string;
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
-    // @ts-ignore
-    const user = decoded.payload;
 
-    const favorites = await this.useCase.run(user.email);
-    res.status(httpStatus.OK).send(favorites);
+    if (!token) {
+      res.status(httpStatus.FORBIDDEN).send({
+        message: 'Forbidden, you need to be logged in to register a new user'
+      });
+    } else {
+      const decoded = jwt.decode(token);
+      // @ts-ignore
+      const response = await this.useCase.run(decoded.payload.email);
+      res.status(httpStatus.OK).send(response);
+    }
   }
 }

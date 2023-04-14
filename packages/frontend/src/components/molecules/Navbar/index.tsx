@@ -14,7 +14,7 @@ import { LoginForm } from "~/components/organisms/LoginForm";
 import { RegisterForm } from "~/components/organisms/RegisterForm";
 
 const useNavbar = () => {
-  const { user, isLoggedIn } = useGetUser();
+  const { user, isLoggedIn, isAdmin } = useGetUser();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenRegister, setIsOpenRegister] = useState<boolean>(false);
 
@@ -40,21 +40,12 @@ const useNavbar = () => {
     handleOpenModalRegister,
     handleCloseModalRegister,
     isOpenRegister,
+    isAdmin,
   };
 };
 
 export const CustomNavbar = () => {
-  const {
-    handleLogout,
-    user,
-    isLoggedIn,
-    handleOpenModal,
-    handleCloseModal,
-    isOpen,
-    handleOpenModalRegister,
-    handleCloseModalRegister,
-    isOpenRegister,
-  } = useNavbar();
+  const navProps = useNavbar();
 
   return (
     <>
@@ -81,18 +72,22 @@ export const CustomNavbar = () => {
             <Navbar.Link href="/" active={true}>
               Home
             </Navbar.Link>
-            <Navbar.Link href="/create-coin">Create coin</Navbar.Link>
+            {navProps.isAdmin ? <Navbar.Link href="/create-coin">Create coin</Navbar.Link> : null}
             <Navbar.Link href="/about">About us</Navbar.Link>
           </Navbar.Collapse>
 
           <DarkThemeToggle />
 
-          <Button onClick={handleOpenModalRegister}>Register</Button>
-          {Boolean(!isLoggedIn) ? (
-            <Button onClick={handleOpenModal}>LogIn</Button>
+          {Boolean(!navProps.isLoggedIn) ? (
+            <Button onClick={navProps.handleOpenModal}>LogIn</Button>
           ) : null}
+          {
+            navProps.isAdmin ? (
+              <Button onClick={navProps.handleOpenModalRegister}>Sign Up</Button>
+            ) : null
+          }
 
-          {isLoggedIn ? (
+          {navProps.isLoggedIn ? (
             <Dropdown
               arrowIcon={false}
               inline={true}
@@ -105,20 +100,20 @@ export const CustomNavbar = () => {
               }
             >
               <Dropdown.Header>
-                <span className="block text-sm">{user.username}</span>
+                <span className="block text-sm">{navProps.user.username}</span>
                 <span className="block truncate text-sm font-medium">
-                  {user.email}
+                  {navProps.user.email}
                 </span>
               </Dropdown.Header>
               <Dropdown.Divider />
-              <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
+              <Dropdown.Item onClick={navProps.handleLogout}>Sign out</Dropdown.Item>
             </Dropdown>
           ) : null}
           <Navbar.Toggle />
         </div>
       </Navbar>
 
-      <Modal show={isOpen} onClose={handleCloseModal} title="LogIn">
+      <Modal show={navProps.isOpen} onClose={navProps.handleCloseModal} title="LogIn">
         <Modal.Header>
           Log In
         </Modal.Header>
@@ -128,8 +123,8 @@ export const CustomNavbar = () => {
       </Modal>
 
       <Modal
-        show={isOpenRegister}
-        onClose={handleCloseModalRegister}
+        show={navProps.isOpenRegister}
+        onClose={navProps.handleCloseModalRegister}
         title="Register"
       >
         <Modal.Header>

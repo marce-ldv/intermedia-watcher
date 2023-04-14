@@ -42,10 +42,6 @@ export class UserLoginController implements Controller {
       }
     });
 
-    // save token in session with express-session
-    // @ts-ignore
-    // req.session.token = token;
-
     const response: LoginResponseDTO = {
       token,
       user: {

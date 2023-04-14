@@ -4,7 +4,9 @@ import { getCookie } from "cookies-next";
 
 export function useGetUser() {
   const [user, setUser] = useState<any>({});
-  const [token, setToken] = useState<string>("");
+  const [token, setToken] = useState<string | any>("");
+  const isLoggedIn = Object.keys(user).length;
+  const isAdmin = isLoggedIn && user?.role === "admin";
 
   useEffect(() => {
     const token = getCookie("token");
@@ -19,6 +21,7 @@ export function useGetUser() {
   return {
     user,
     token,
-    isLoggedIn: Object.keys(user).length,
+    isLoggedIn,
+    isAdmin,
   };
 }

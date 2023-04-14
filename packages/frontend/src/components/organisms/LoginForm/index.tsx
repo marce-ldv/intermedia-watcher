@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Button, Label, TextInput } from "flowbite-react";
 import {useRouter} from "next/router";
 
 type TypeUserAuth = { email: string; password: string }
@@ -36,9 +36,6 @@ export const LoginForm = () => {
   };
 
   return (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <div>
         <div className="mb-2 block">
