@@ -4,5 +4,5 @@ export interface UserRepository {
   register(user: User): Promise<void>;
   findUserByEmail(user: { email: string }): Promise<User>;
   findAllFavorites(email: { email: string }): Promise<string[]>;
-  toggleFavorite(user: { email: string; favorite: string }): Promise<any>;
+  toggleFavorite(favorite: string, email: string): Promise<any>;
 }

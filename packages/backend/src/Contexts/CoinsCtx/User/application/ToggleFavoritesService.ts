@@ -7,10 +7,7 @@ export class ToggleFavoritesService {
     this.repository = userService;
   }
 
-  async run(body: { username: string; email: string; password: string; favorites: string }): Promise<void> {
-    await this.repository.toggleFavorite({
-      email: body.email,
-      favorite: body.favorites
-    });
+  async run(favorite: string, email: string): Promise<void> {
+    await this.repository.toggleFavorite(favorite, email);
   }
 }

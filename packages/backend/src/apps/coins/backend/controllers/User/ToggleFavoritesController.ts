@@ -4,6 +4,7 @@ import httpStatus from 'http-status';
 import { Controller } from '../Controller';
 import { UserRegister } from '../../../../../Contexts/CoinsCtx/User/application/UserRegister';
 import { TypeUser } from '../../../../../Contexts/CoinsCtx/User/domain/User';
+import jwt from "jsonwebtoken";
 
 export class ToggleFavoritesController implements Controller {
   private readonly useCase: UserRegister;
@@ -13,7 +14,11 @@ export class ToggleFavoritesController implements Controller {
   }
 
   async run(req: Request<{}, {}, TypeUser>, res: Response): Promise<void> {
-    const response = await this.useCase.run(req.body);
+    const token = req.headers.token as string;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
+
+    // @ts-ignore
+    const response = await this.useCase.run(req.body.favorites, decoded.payload.email);
     res.status(httpStatus.OK).send(response);
   }
 }
