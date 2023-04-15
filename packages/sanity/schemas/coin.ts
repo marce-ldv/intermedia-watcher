@@ -20,7 +20,7 @@ export default {
     },
     {
       name: 'logo',
-      type: 'image',
+      type: 'string',
       title: 'Logo',
     },
     {

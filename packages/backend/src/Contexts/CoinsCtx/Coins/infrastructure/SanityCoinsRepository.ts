@@ -90,4 +90,21 @@ export class SanityCoinsRepository implements CoinRepository {
 
     return response.data;
   }
+
+  async remove(id: string): Promise<void> {
+    await axios.post(`https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/mutate/user`, {
+      mutations: [
+        {
+          delete: {
+            query: `*[_type == "coin" && id == "${id}"]`
+          },
+        }
+      ]
+    },{
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${SANITY_TOKEN}`
+      }
+    });
+  }
 }

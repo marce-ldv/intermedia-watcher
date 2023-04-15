@@ -14,7 +14,10 @@ import {
 } from "~/context/Modals/root";
 import { Modals } from "~/components/organisms/Modals";
 
+
 const App: AppType = ({ Component, pageProps }) => {
+  console.log(pageProps)
+
   const [userState, userDispatch] = useUserReducer();
   const [modalState, modalDispatch] = useModalReducer();
 

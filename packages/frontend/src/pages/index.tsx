@@ -4,6 +4,8 @@ import Head from "next/head";
 import { getCookie } from "cookies-next";
 import jwtDecode from "jwt-decode";
 import dynamic from "next/dynamic";
+import Header from "~/components/molecules/Header";
+
 
 const Table = dynamic(() => import("~/components/organisms/Table").then(
   (mod) => mod.CustomTable
@@ -26,6 +28,16 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export function getServerSideProps({ req, res }: any) {
+  console.log('indexxxx SSR')
+
+  return {
+    props: {
+
+    }
+  };
+}
 
 // export function getServerSideProps({ req, res }: any) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

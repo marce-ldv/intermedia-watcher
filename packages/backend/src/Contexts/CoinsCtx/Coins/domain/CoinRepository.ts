@@ -5,4 +5,5 @@ export interface CoinRepository {
   getAll(): Promise<Coin[]>;
   getTrending(): Promise<Coin[]>;
   update(coin: Coin): Promise<void>;
+  remove(id: string): Promise<void>;
 }
