@@ -15,13 +15,14 @@ export class UserRegisterController implements Controller {
 
   async run(req: Request<{}, {}, TypeUser>, res: Response): Promise<void> {
     const token = req.headers.token as string;
-    const decoded = jwt.decode(token)
 
     if (!token) {
       res.status(httpStatus.FORBIDDEN).send({
         message: 'Forbidden, you need to be logged in to register a new user'
       });
     }
+
+    const decoded = jwt.decode(token)
 
     // @ts-ignore
     if (decoded.payload.role !== 'admin') {

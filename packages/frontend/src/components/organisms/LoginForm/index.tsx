@@ -1,35 +1,38 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Button, Label, TextInput } from "flowbite-react";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
+import { useUserDispatch } from "~/context/User/root";
+import { setToken } from "~/context/User/actions";
 
-type TypeUserAuth = { email: string; password: string }
+type TypeUserAuth = { email: string; password: string };
 
 const useAuth = () => {
-  const router = useRouter()
-  const login = async (data: TypeUserAuth): Promise<void> => {
+  const router = useRouter();
+  const dispatch = useUserDispatch();
+
+  const loginRepository = async (data: TypeUserAuth): Promise<void> => {
     const response = await axios.post("api/login", data);
 
     if (!response) {
       throw new Error("Failed to login");
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
-    localStorage.setItem("token", response.data.token);
-    await router.push("/")
+    dispatch(setToken(response.data.token));
+    await router.push("/");
   };
   return {
-    login,
+    loginRepository,
   };
 };
 
 export const LoginForm = () => {
-  const { login } = useAuth();
+  const { loginRepository } = useAuth();
   const { handleSubmit, register } = useForm();
 
   const onSubmit = async (data: TypeUserAuth) => {
     try {
-      await login(data);
+      await loginRepository(data);
     } catch (error) {
       console.log(error);
     }

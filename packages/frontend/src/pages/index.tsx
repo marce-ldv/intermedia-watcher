@@ -1,7 +1,15 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { CustomTable } from "~/components/organisms/Table";
+// import { CustomTable } from "~/components/organisms/Table";
 import { getCookie } from "cookies-next";
+import jwtDecode from "jwt-decode";
+import dynamic from "next/dynamic";
+
+const Table = dynamic(() => import("~/components/organisms/Table").then(
+  (mod) => mod.CustomTable
+), {
+  ssr: false,
+});
 
 const Home: NextPage = () => {
   return (
@@ -12,20 +20,22 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <CustomTable />
+      <Table />
     </>
   );
 };
 
 export default Home;
 
-export function getServerSideProps({ req, res }: any) {
+// export function getServerSideProps({ req, res }: any) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const token = getCookie("token", { req, res }) || "";
-
-  return {
-    props: {
-      token,
-    },
-  };
-}
+  // const token = getCookie("token", { req, res }) || "";
+  // const decoded = jwtDecode(token) || null;
+  //
+  // return {
+  //   props: {
+  //     token: token,
+  //     user: decoded?.payload,
+  //   },
+  // };
+// }

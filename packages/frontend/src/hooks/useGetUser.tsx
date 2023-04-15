@@ -5,15 +5,15 @@ import { getCookie } from "cookies-next";
 export function useGetUser() {
   const [user, setUser] = useState<any>({});
   const [token, setToken] = useState<string | any>("");
-  const isLoggedIn = Object.keys(user).length;
+  const isLoggedIn = user ? Object.keys(user).length : false;
   const isAdmin = isLoggedIn && user?.role === "admin";
 
   useEffect(() => {
-    const token = getCookie("token");
-    if (token) {
-      setToken(token);
+    const tokenCookie = getCookie("token");
+    if (tokenCookie) {
+      setToken(tokenCookie);
 
-      const tokenDecode = jwtDecode(token) || null;
+      const tokenDecode = jwtDecode(tokenCookie) || null;
       setUser(tokenDecode?.payload);
     }
   }, []);

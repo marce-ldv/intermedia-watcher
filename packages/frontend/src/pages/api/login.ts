@@ -28,10 +28,6 @@ export default async function handler(
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         setCookie('token', response.data.token, { req, res });
-
-        // TODO: save token in session with next-session or next-auth
-        // session.token = "token";
-        // await session.commit();
         res.status(200).json(response.data);
       } catch (error) {
         res.status(400).json({ success: false });

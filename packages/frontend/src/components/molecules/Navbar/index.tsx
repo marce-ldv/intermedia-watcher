@@ -8,20 +8,26 @@ import {
 } from "flowbite-react";
 import Image from "next/image";
 import { removeCookies } from "cookies-next";
-import { useGetUser } from "~/hooks/useGetUser";
 import { useState } from "react";
 import { LoginForm } from "~/components/organisms/LoginForm";
 import { RegisterForm } from "~/components/organisms/RegisterForm";
+import { useUserDispatch, useUserState } from "~/context/User/root";
+import { useRouter } from "next/router";
+import { resetUserData } from "~/context/User/actions";
 
 const useNavbar = () => {
-  const { user, isLoggedIn, isAdmin } = useGetUser();
+  const { token, user } = useUserState();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenRegister, setIsOpenRegister] = useState<boolean>(false);
+  const dispatch = useUserDispatch();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
+  const handleLogout = async () => {
     removeCookies("token");
-    window.location.href = "/login";
+    dispatch(resetUserData());
+    await router.push("/");
+
+    if(isOpen) setIsOpen(false);
   };
 
   const handleOpenModal = () => setIsOpen(true);
@@ -31,16 +37,16 @@ const useNavbar = () => {
   const handleCloseModalRegister = () => setIsOpenRegister(false);
 
   return {
-    handleLogout,
     user,
-    isLoggedIn,
+    isLoggedIn: Boolean(token),
+    isOpen,
+    isOpenRegister,
+    isAdmin: user?.role === "admin",
+    handleLogout,
     handleOpenModal,
     handleCloseModal,
-    isOpen,
     handleOpenModalRegister,
     handleCloseModalRegister,
-    isOpenRegister,
-    isAdmin,
   };
 };
 
@@ -72,7 +78,9 @@ export const CustomNavbar = () => {
             <Navbar.Link href="/" active={true}>
               Home
             </Navbar.Link>
-            {navProps.isAdmin ? <Navbar.Link href="/create-coin">Create coin</Navbar.Link> : null}
+            {navProps.isAdmin ? (
+              <Navbar.Link href="/create-coin">Create coin</Navbar.Link>
+            ) : null}
             <Navbar.Link href="/about">About us</Navbar.Link>
           </Navbar.Collapse>
 
@@ -81,11 +89,9 @@ export const CustomNavbar = () => {
           {Boolean(!navProps.isLoggedIn) ? (
             <Button onClick={navProps.handleOpenModal}>LogIn</Button>
           ) : null}
-          {
-            navProps.isAdmin ? (
-              <Button onClick={navProps.handleOpenModalRegister}>Sign Up</Button>
-            ) : null
-          }
+          {navProps.isAdmin ? (
+            <Button onClick={navProps.handleOpenModalRegister}>Sign Up</Button>
+          ) : null}
 
           {navProps.isLoggedIn ? (
             <Dropdown
@@ -106,17 +112,21 @@ export const CustomNavbar = () => {
                 </span>
               </Dropdown.Header>
               <Dropdown.Divider />
-              <Dropdown.Item onClick={navProps.handleLogout}>Sign out</Dropdown.Item>
+              <Dropdown.Item onClick={navProps.handleLogout}>
+                Sign out
+              </Dropdown.Item>
             </Dropdown>
           ) : null}
           <Navbar.Toggle />
         </div>
       </Navbar>
 
-      <Modal show={navProps.isOpen} onClose={navProps.handleCloseModal} title="LogIn">
-        <Modal.Header>
-          Log In
-        </Modal.Header>
+      <Modal
+        show={navProps.isOpen}
+        onClose={navProps.handleCloseModal}
+        title="LogIn"
+      >
+        <Modal.Header>Log In</Modal.Header>
         <Modal.Body>
           <LoginForm />
         </Modal.Body>
@@ -127,9 +137,7 @@ export const CustomNavbar = () => {
         onClose={navProps.handleCloseModalRegister}
         title="Register"
       >
-        <Modal.Header>
-          Sign Up
-        </Modal.Header>
+        <Modal.Header>Sign Up</Modal.Header>
         <Modal.Body>
           <RegisterForm />
         </Modal.Body>
