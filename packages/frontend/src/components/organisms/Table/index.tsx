@@ -9,6 +9,9 @@ import { toggleFavoritesUser } from "~/repository/user/toggleFavorites";
 import Link from "next/link";
 import { PopUpModal } from "~/components/organisms/PopUpModal";
 import { useUserState } from "~/context/User/root";
+import { useModalDispatch, useModalState } from "~/context/Modals/root";
+import { setModalData } from "~/context/Modals/actions";
+import { removeCoinRepository } from "~/repository/coin/removeCoin";
 
 const useTable = () => {
   const [data, setData] = useState<Coin[]>([]);
@@ -16,13 +19,15 @@ const useTable = () => {
   const [isShowFavorites, setIsShowFavorites] = useState<boolean>(false);
   const [isOpenDelete, setIsOpenDelete] = useState<boolean>(false);
   const { token } = useUserState();
+  const modalDispatch = useModalDispatch();
+  const { data: modalData } = useModalState();
 
   const handleData = async (): Promise<void> => {
     const trendingData = await getTrendingCoins();
 
     if (!token) {
       setData(trendingData);
-      setFavorites([])
+      setFavorites([]);
       setIsShowFavorites(false);
 
       return;
@@ -53,12 +58,12 @@ const useTable = () => {
   };
 
   const handleClickRemove = (id: string) => {
+    modalDispatch(setModalData({ id }));
     setIsOpenDelete(true);
   };
 
-  const handleClickConfirm = () => {
-    alert("favoriteId");
-    // await removeFavoritesUser({ favoriteId, email: user.email });
+  const handleClickConfirm = async () => {
+    await removeCoinRepository(modalData.id);
     setIsOpenDelete(false);
   };
 
@@ -173,17 +178,15 @@ export const CustomTable = () => {
             whiteSpace: "nowrap",
           }}
         >
-          {
-            isLoggedIn && (
-              <div className="flex justify-start">
-                <ToggleSwitch
-                  checked={isShowFavorites}
-                  label="Show favorites"
-                  onChange={setIsShowFavorites}
-                />
-              </div>
-            )
-          }
+          {isLoggedIn && (
+            <div className="flex justify-start">
+              <ToggleSwitch
+                checked={isShowFavorites}
+                label="Show favorites"
+                onChange={setIsShowFavorites}
+              />
+            </div>
+          )}
           <Table hoverable={true}>
             <Table.Head>
               {columns.map((column) => (
