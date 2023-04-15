@@ -9,7 +9,7 @@ services:
 
   Coins.coins.application.CoinsGetTrending:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetTrending
-    arguments: [ '@Coins.coins.application.CoinGeckoService' ]
+    arguments: [ '@Coins.coins.application.CoinGeckoService', '@Coins.coins.domain.CoinRepository' ]
 
   Coins.user.domain.UserRepository:
     class: ../../../../../Contexts/CoinsCtx/User/infrastructure/SanityUserRepository

@@ -6,8 +6,8 @@ const SANITY_TOKEN = process.env.SANITY_TOKEN;
 const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
 
 export class SanityCoinsRepository implements CoinRepository {
-  async getAll(coin: Coin): Promise<Coin[]> {
-    const response = await axios.get(`https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/query/user`, {
+  async getAll(): Promise<Coin[]> {
+    const { data } = await axios.get(`https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/query/user`, {
       params: {
         query: `*[_type == "coin"]`
       },
@@ -17,10 +17,10 @@ export class SanityCoinsRepository implements CoinRepository {
       }
     });
 
-    return response.data;
+    return data.result;
   }
 
-  async getTrending(coin: Coin): Promise<Coin[]> {
+  async getTrending(): Promise<Coin[]> {
     const response = await axios.get(`https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/query/user`, {
       params: {
         query: `*[_type == "coin" && trending == true]`
@@ -42,6 +42,7 @@ export class SanityCoinsRepository implements CoinRepository {
           {
             create: {
               _type: 'coin',
+              id: coin.id,
               name: coin.name,
               symbol: coin.symbol,
               logo: coin.logo,

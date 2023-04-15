@@ -4,7 +4,7 @@ export const columns = [
     accessor: "canFavorite",
   },
   {
-    Header: "Name",
+    Header: "Coin",
     accessor: "name",
   },
   {
@@ -16,7 +16,7 @@ export const columns = [
     accessor: "priceChange24hAgo",
   },
   {
-    Header: "Market Cap",
+    Header: "Mkt Cap",
     accessor: "marketCap",
   },
   {
