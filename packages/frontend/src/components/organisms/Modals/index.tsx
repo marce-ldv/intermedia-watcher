@@ -1,5 +1,6 @@
 import { useModalState } from "~/context/Modals/root";
 import Login from "~/components/organisms/Modals/Login";
+import Register from "~/components/organisms/Modals/Register";
 
 export const MODAL_ROUTES = {
   LOGIN: "login",
@@ -16,8 +17,8 @@ export const Modals = () => {
     switch (route) {
       case MODAL_ROUTES.LOGIN:
         return <Login />;
-      // case MODAL_ROUTES.REGISTER:
-      //   return <RegisterForm onClose={onClose} />;
+      case MODAL_ROUTES.REGISTER:
+        return <Register />;
       // case MODAL_ROUTES.CREATE_COIN:
       //   return <CreateCoinForm onClose={onClose} />;
       // case MODAL_ROUTES.DELETE_COIN:

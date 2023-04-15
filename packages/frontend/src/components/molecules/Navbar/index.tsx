@@ -3,25 +3,20 @@ import {
   Button,
   DarkThemeToggle,
   Dropdown,
-  Modal,
   Navbar,
 } from "flowbite-react";
 import Image from "next/image";
 import { removeCookies } from "cookies-next";
-import { useState } from "react";
-import { LoginForm } from "~/components/organisms/LoginForm";
-import { RegisterForm } from "~/components/organisms/RegisterForm";
 import { useUserDispatch, useUserState } from "~/context/User/root";
 import { useRouter } from "next/router";
 import { resetUserData } from "~/context/User/actions";
 import { useModalDispatch } from "~/context/Modals/root";
-import {setRoute, setToggle} from "~/context/Modals/actions";
-import {MODAL_ROUTES} from "~/components/organisms/Modals";
+import { setRoute, setToggle } from "~/context/Modals/actions";
+import { MODAL_ROUTES } from "~/components/organisms/Modals";
 
 const useNavbar = () => {
   const { token, user } = useUserState();
   const router = useRouter();
-  const [isOpenRegister, setIsOpenRegister] = useState<boolean>(false);
   const dispatch = useUserDispatch();
   const modalDispatch = useModalDispatch();
 
@@ -36,18 +31,18 @@ const useNavbar = () => {
     modalDispatch(setRoute(MODAL_ROUTES.LOGIN));
   };
 
-  const handleOpenModalRegister = () => setIsOpenRegister(true);
-  const handleCloseModalRegister = () => setIsOpenRegister(false);
+  const handleRegisterModal = () => {
+    modalDispatch(setToggle(true));
+    modalDispatch(setRoute(MODAL_ROUTES.REGISTER));
+  };
 
   return {
     user,
     isLoggedIn: Boolean(token),
-    isOpenRegister,
     isAdmin: user?.role === "admin",
     handleLogout,
     handleLoginModal,
-    handleOpenModalRegister,
-    handleCloseModalRegister,
+    handleRegisterModal,
   };
 };
 
@@ -55,12 +50,10 @@ export const CustomNavbar = () => {
   const {
     user,
     isLoggedIn,
-    isOpenRegister,
     isAdmin,
     handleLogout,
     handleLoginModal,
-    handleOpenModalRegister,
-    handleCloseModalRegister,
+    handleRegisterModal,
   } = useNavbar();
 
   return (
@@ -100,7 +93,7 @@ export const CustomNavbar = () => {
             <Button onClick={handleLoginModal}>LogIn</Button>
           ) : null}
           {isAdmin ? (
-            <Button onClick={handleOpenModalRegister}>Sign Up</Button>
+            <Button onClick={handleRegisterModal}>Sign Up</Button>
           ) : null}
 
           {isLoggedIn ? (
@@ -128,17 +121,6 @@ export const CustomNavbar = () => {
           <Navbar.Toggle />
         </div>
       </Navbar>
-
-      <Modal
-        show={isOpenRegister}
-        onClose={handleCloseModalRegister}
-        title="Register"
-      >
-        <Modal.Header>Sign Up</Modal.Header>
-        <Modal.Body>
-          <RegisterForm />
-        </Modal.Body>
-      </Modal>
     </>
   );
 };
