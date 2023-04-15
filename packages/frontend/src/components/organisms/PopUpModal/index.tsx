@@ -22,7 +22,7 @@ export const PopUpModal = ({
 }: PopUpModalProps) => {
   return (
     <>
-      <Modal {...props} show={show} size="md" popup={true} onClose={onClose}>
+      <Modal show={show} size="md" popup={true} onClose={onClose} {...props}>
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">

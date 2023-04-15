@@ -7,21 +7,33 @@ import {
   UserContextState,
   useUserReducer,
 } from "~/context/User/root";
+import {
+  ModalContextDispatch,
+  ModalContextState,
+  useModalReducer,
+} from "~/context/Modals/root";
+import { Modals } from "~/components/organisms/Modals";
 
-const MyApp: AppType = ({ Component, pageProps }) => {
+const App: AppType = ({ Component, pageProps }) => {
   const [userState, userDispatch] = useUserReducer();
+  const [modalState, modalDispatch] = useModalReducer();
 
   return (
     <UserContextState.Provider value={userState}>
       <UserContextDispatch.Provider value={userDispatch}>
-        <Flowbite>
-          <MainLayout>
-            <Component {...pageProps} />
-          </MainLayout>
-        </Flowbite>
+        <ModalContextState.Provider value={modalState}>
+          <ModalContextDispatch.Provider value={modalDispatch}>
+            <Modals />
+            <Flowbite>
+              <MainLayout>
+                <Component {...pageProps} />
+              </MainLayout>
+            </Flowbite>
+          </ModalContextDispatch.Provider>
+        </ModalContextState.Provider>
       </UserContextDispatch.Provider>
     </UserContextState.Provider>
   );
 };
 
-export default MyApp;
+export default App;

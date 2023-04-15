@@ -4,12 +4,15 @@ import { Button, Label, TextInput } from "flowbite-react";
 import { useRouter } from "next/router";
 import { useUserDispatch } from "~/context/User/root";
 import { setToken } from "~/context/User/actions";
+import { useModalDispatch } from "~/context/Modals/root";
+import { setToggle } from "~/context/Modals/actions";
 
 type TypeUserAuth = { email: string; password: string };
 
 const useAuth = () => {
   const router = useRouter();
   const dispatch = useUserDispatch();
+  const modalDispatch = useModalDispatch();
 
   const loginRepository = async (data: TypeUserAuth): Promise<void> => {
     const response = await axios.post("api/login", data);
@@ -19,6 +22,7 @@ const useAuth = () => {
     }
 
     dispatch(setToken(response.data.token));
+    modalDispatch(setToggle(false));
     await router.push("/");
   };
   return {
