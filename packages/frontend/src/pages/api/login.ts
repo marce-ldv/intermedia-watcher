@@ -10,8 +10,6 @@ export default async function handler(
 ) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { method, body } = req;
-  // const session = await getSession(req, res);
-
   const user = {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
     email: body.email,
