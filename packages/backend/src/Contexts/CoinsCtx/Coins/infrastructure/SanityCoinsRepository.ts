@@ -1,6 +1,7 @@
 import { CoinRepository } from '../domain/CoinRepository';
 import { Coin } from '../domain/Coin';
 import axios from 'axios';
+import {CoinUpdateDTO} from "../application/dto/CoinUpdateDTO";
 
 const SANITY_TOKEN = process.env.SANITY_TOKEN;
 const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
@@ -62,14 +63,14 @@ export class SanityCoinsRepository implements CoinRepository {
     return response.data;
   }
 
-  async update(coin: Coin): Promise<void> {
+  async update(coin: CoinUpdateDTO): Promise<void> {
     const response = await axios.post(
       `https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/mutate/user`,
       {
         mutations: [
           {
             patch: {
-              id: coin.id,
+              query: `*[_type == "coin" && id == "${coin.id}"]`,
               set: {
                 name: coin.name,
                 symbol: coin.symbol,

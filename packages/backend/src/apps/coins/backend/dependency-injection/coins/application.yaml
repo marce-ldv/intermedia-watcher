@@ -50,3 +50,7 @@ services:
   Coins.coins.application.CoinsRemoveCoinService:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsRemoveCoinService
     arguments: [ '@Coins.coins.domain.CoinRepository' ]
+
+  Coins.coins.application.CoinsUpdateCoinService:
+    class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsUpdateCoinService
+    arguments: [ '@Coins.coins.domain.CoinRepository' ]

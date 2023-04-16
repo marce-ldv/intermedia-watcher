@@ -34,3 +34,7 @@ services:
   Apps.coins.controllers.CoinRemoveCoinController:
     class: ../../controllers/Coins/CoinRemoveCoinController
     arguments: [ '@Coins.coins.application.CoinsRemoveCoinService' ]
+
+  Apps.coins.controllers.CoinUpdateCoinController:
+    class: ../../controllers/Coins/CoinUpdateCoinController
+    arguments: [ '@Coins.coins.application.CoinsUpdateCoinService' ]

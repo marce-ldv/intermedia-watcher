@@ -31,7 +31,8 @@ export class CoinsGetTrending {
         canFavorite: sanityCoin?.canFavorite ?? true,
         name: sanityCoin?.name ?? coin.name,
         symbol: sanityCoin?.symbol ?? coin.symbol,
-        logo: sanityCoin?.logo ?? coin.image
+        logo: sanityCoin?.logo ?? coin.image,
+        isSanityCoin: !!sanityCoin
       };
     });
 
@@ -44,7 +45,8 @@ export class CoinsGetTrending {
         marketCap: String(coin.market_cap),
         priceChange24hAgo: String(coin.price_change_percentage_24h),
         symbol: coin.symbol,
-        canFavorite: coin.canFavorite
+        canFavorite: coin.canFavorite,
+        isSanityCoin: coin.isSanityCoin
       });
     });
 

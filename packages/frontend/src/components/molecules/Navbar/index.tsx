@@ -82,7 +82,7 @@ export const CustomNavbar = () => {
               Home
             </Navbar.Link>
             {isAdmin ? (
-              <Navbar.Link href="/create-coin">Create coin</Navbar.Link>
+              <Navbar.Link href="/coin/create">Create coin</Navbar.Link>
             ) : null}
             <Navbar.Link href="/about">About us</Navbar.Link>
           </Navbar.Collapse>

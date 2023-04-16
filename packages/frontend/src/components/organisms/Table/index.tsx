@@ -146,12 +146,14 @@ export const CustomTable = () => {
 
             {/* action button to edit remove a coin */}
             <Table.Cell className="!p-4">
-              <Dropdown label="⚒️" size="xs" color="light">
+              <Dropdown
+                label="⚒️"
+                size="xs"
+                color="light"
+                disabled={!row?.isSanityCoin}
+              >
                 <Dropdown.Item>
-                  <Link href={`/coin/${row.id}`}>View</Link>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                  <Link href={`/coin/${row.id}/edit`}>Edit</Link>
+                  <Link href={`/coin/edit/${row.id}`}>Edit</Link>
                 </Dropdown.Item>
                 <Dropdown.Item onClick={() => handleClickRemove(row.id)}>
                   Remove

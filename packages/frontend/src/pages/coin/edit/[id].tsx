@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-// import { LoginForm } from "~/components/organisms/LoginForm";
+import { UpdateCoinOrganism } from "~/components/organisms/UpdateCoin";
 
 const EditCoin: NextPage = () => {
   return (
@@ -12,6 +12,7 @@ const EditCoin: NextPage = () => {
       </Head>
 
       <h1>Edit coin</h1>
+      <UpdateCoinOrganism />
     </>
   );
 };
