@@ -8,12 +8,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { method, body } = req;
+  const url = process.env.NEXT_API_ROUTE_URL ?? "http://localhost:5000";
+  const { method } = req;
+  const body = req.body as { email: string, password: string };
+
   const user = {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
     email: body.email,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
     password: body.password,
   }
 
@@ -21,7 +21,7 @@ export default async function handler(
     case "POST":
       try {
         const response = await axios.post(
-          "http://localhost:5000/user/login", user
+          `${url}user/login`, user
         );
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

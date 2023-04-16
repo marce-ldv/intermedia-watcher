@@ -53,7 +53,7 @@ export class Server {
     return new Promise(resolve => {
       const env = this.express.get('env') as string;
       this.httpServer = this.express.listen(this.port, () => {
-        console.log(`  Mock Backend App is running at http://localhost:${this.port} in ${env} mode`);
+        console.log(`  Backend App is running at http://localhost:${this.port} in ${env} mode`);
         console.log('  Press CTRL-C to stop\n');
         resolve();
       });

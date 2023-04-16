@@ -5,16 +5,16 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { method, cookies, body } = req;
+  const url = process.env.NEXT_API_ROUTE_URL ?? "http://localhost:5000";
+  const { method, cookies } = req;
+  const body = req.body as { favoriteId: string };
 
   switch (method) {
     case "POST":
       try {
         const response = await axios.post(
-          "http://localhost:5000/user/favorites",
+          `${url}user/favorites`,
           {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
             favorites: body.favoriteId,
           },
           {
@@ -31,7 +31,6 @@ export default async function handler(
       break;
     default:
       res.setHeader("Allow", ["POST"]);
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      res.status(405).end(`Method ${method} Not Allowed`);
+      res.status(405).end(`Method ${method ?? ''} Not Allowed`);
   }
 }

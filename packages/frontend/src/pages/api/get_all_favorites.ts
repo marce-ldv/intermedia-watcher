@@ -5,13 +5,14 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const url = process.env.NEXT_API_ROUTE_URL ?? "http://localhost:5000";
   const { method, cookies } = req;
 
   switch (method) {
     case "GET":
       try {
         const response = await axios.get(
-          "http://localhost:5000/user/favorites", {
+          `${url}user/favorites`, {
             headers: {
               token: cookies.token,
             }

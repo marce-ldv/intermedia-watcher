@@ -5,6 +5,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const url = process.env.NEXT_API_ROUTE_URL ?? "http://localhost:5000";
   const { method, cookies } = req;
   const body = req.body as {
     username: string;
@@ -24,7 +25,7 @@ export default async function handler(
     case "POST":
       try {
         const response = await axios.post(
-          "http://localhost:5000/user/register", user, {
+          `${url}user/register`, user, {
             headers: {
               token: cookies.token || null,
             }

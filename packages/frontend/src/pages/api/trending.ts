@@ -6,12 +6,13 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { method } = req;
+  const url = process.env.NEXT_API_ROUTE_URL ?? "http://localhost:5000";
 
   switch (method) {
     case "GET":
       try {
         const response = await axios.get(
-          "http://localhost:5000/coins/trending"
+          `${url}coins/trending`
         );
         res.status(200).json(response.data);
       } catch (error) {
@@ -20,7 +21,6 @@ export default async function handler(
       break;
     default:
       res.setHeader("Allow", ["GET"]);
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      res.status(405).end(`Method ${method} Not Allowed`);
+      res.status(405).end(`Method ${method ?? ''} Not Allowed`);
   }
 }

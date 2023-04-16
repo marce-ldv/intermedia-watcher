@@ -7,14 +7,16 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const url = process.env.NEXT_API_ROUTE_URL ?? "http://localhost:5000";
   const { method, cookies } = req;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const body = req.body as Coin;
 
   switch (method) {
     case "POST":
       try {
         const response = await axios.put(
-          "http://localhost:5000/coins/update",
+          `${url}coins/update`,
           {
             ...body,
           },
