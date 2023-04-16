@@ -12,7 +12,7 @@ const useUpdateCoin = () => {
   const { id } = router.query;
 
   const updateCoin = async (data: Partial<Coin>): Promise<void> => {
-    await updateCoinRepository(data, id)
+    await updateCoinRepository(data, id as string)
   };
 
   return {
