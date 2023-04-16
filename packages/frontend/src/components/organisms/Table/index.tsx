@@ -64,7 +64,7 @@ const useTable = () => {
 
   const handleClickConfirm = () => {
     const handleConfirm = async () => {
-      await removeCoinRepository(modalData.id!);
+      await removeCoinRepository(modalData.id as string);
       setIsOpenDelete(false);
     }
 
@@ -73,6 +73,7 @@ const useTable = () => {
 
   useEffect(() => {
     void handleData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   // update handleData per minute
@@ -82,6 +83,7 @@ const useTable = () => {
     }, UPDATE_INTERVAL);
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   return {

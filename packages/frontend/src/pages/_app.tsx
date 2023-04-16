@@ -1,10 +1,7 @@
+import { Flowbite } from "flowbite-react";
 import { type AppType } from "next/dist/shared/lib/utils";
 
 import { MainLayout } from "~/components/layouts";
-
-import "~/styles/globals.css";
-import { Flowbite } from "flowbite-react";
-
 import { Modals } from "~/components/organisms/Modals";
 import {
   ModalContextDispatch,
@@ -17,6 +14,7 @@ import {
   useUserReducer,
 } from "~/context/User/root";
 
+import "~/styles/globals.css";
 
 const App: AppType = ({ Component, pageProps }) => {
   const [userState, userDispatch] = useUserReducer();
