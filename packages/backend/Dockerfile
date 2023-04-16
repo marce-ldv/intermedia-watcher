@@ -1,6 +1,10 @@
-FROM node:14-slim
+FROM node:16.19-alpine
 
 WORKDIR /code
 
-COPY package.json package-lock.json ./
-RUN npm install
+COPY ./ ./
+RUN yarn install
+
+RUN yarn build
+EXPOSE 5000
+CMD ["yarn", "start:coins:backend"]
