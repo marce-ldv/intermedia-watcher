@@ -12,7 +12,9 @@ const Login: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <LoginForm />
+      <div className="flex w-1/2 flex-col gap-4">
+        <LoginForm />
+      </div>
     </>
   );
 };

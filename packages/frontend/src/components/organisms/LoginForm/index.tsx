@@ -54,7 +54,7 @@ export const LoginForm = () => {
         <TextInput
           id="email1"
           type="email"
-          placeholder="name@flowbite.com"
+          placeholder="marce@test.com"
           required={true}
           {...register("email")}
         />

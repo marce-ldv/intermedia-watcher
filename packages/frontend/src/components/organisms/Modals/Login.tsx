@@ -15,7 +15,7 @@ const Login = () => {
   return (
     <Modal show={show} onClose={handleCloseModal} title="LogIn">
       <Modal.Header>Log In</Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="flex flex-col gap-4">
         <LoginForm />
       </Modal.Body>
     </Modal>
