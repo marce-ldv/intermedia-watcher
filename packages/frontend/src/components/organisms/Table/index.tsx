@@ -1,17 +1,21 @@
-import { columns } from "~/components/organisms/Table/columns";
 import { useEffect, useState } from "react";
-import type { Coin } from "~/domain/Coin";
-import Image from "next/image";
+
 import { Table, Rating, Dropdown, Spinner, ToggleSwitch } from "flowbite-react";
+import Image from "next/image";
+import Link from "next/link";
+
+import { PopUpModal } from "~/components/organisms/PopUpModal";
+import { columns } from "~/components/organisms/Table/columns";
+import { setModalData } from "~/context/Modals/actions";
+import { useModalDispatch, useModalState } from "~/context/Modals/root";
+import { useUserState } from "~/context/User/root";
+import type { Coin } from "~/domain/Coin";
 import { getTrendingCoins } from "~/repository/coin/getTrendingCoins";
+import { removeCoinRepository } from "~/repository/coin/removeCoin";
 import { getAllFavoritesUser } from "~/repository/user/getAllFavorites";
 import { toggleFavoritesUser } from "~/repository/user/toggleFavorites";
-import Link from "next/link";
-import { PopUpModal } from "~/components/organisms/PopUpModal";
-import { useUserState } from "~/context/User/root";
-import { useModalDispatch, useModalState } from "~/context/Modals/root";
-import { setModalData } from "~/context/Modals/actions";
-import { removeCoinRepository } from "~/repository/coin/removeCoin";
+
+const UPDATE_INTERVAL = 60 * 1000;
 
 const useTable = () => {
   const [data, setData] = useState<Coin[]>([]);
@@ -48,10 +52,6 @@ const useTable = () => {
     setFavorites(favorites);
   };
 
-  useEffect(() => {
-    void handleData();
-  }, [token]);
-
   const handleClickFavorite = async (favoriteId: string) => {
     await toggleFavoritesUser({ favoriteId });
     void handleData();
@@ -66,6 +66,19 @@ const useTable = () => {
     await removeCoinRepository(modalData.id);
     setIsOpenDelete(false);
   };
+
+  useEffect(() => {
+    void handleData();
+  }, [token]);
+
+  // update handleData per minute
+  useEffect(() => {
+    const interval = setInterval(() => {
+      void handleData();
+    }, UPDATE_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, [token]);
 
   return {
     columns,

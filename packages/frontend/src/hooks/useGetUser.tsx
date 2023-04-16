@@ -1,6 +1,7 @@
-import jwtDecode from "jwt-decode";
 import {useEffect, useState} from "react";
+
 import { getCookie } from "cookies-next";
+import jwtDecode from "jwt-decode";
 
 export function useGetUser() {
   const [user, setUser] = useState<any>({});

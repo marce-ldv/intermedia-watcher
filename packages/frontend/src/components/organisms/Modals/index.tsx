@@ -1,6 +1,6 @@
-import { useModalState } from "~/context/Modals/root";
 import Login from "~/components/organisms/Modals/Login";
 import Register from "~/components/organisms/Modals/Register";
+import { useModalState } from "~/context/Modals/root";
 
 export const MODAL_ROUTES = {
   LOGIN: "login",

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+
 import dynamic from "next/dynamic";
 
 const Navbar = dynamic(
@@ -15,10 +16,7 @@ export const MainLayout = ({ children }: { children: ReactNode }) => {
       <main className="flex min-h-screen min-w-max flex-col items-center justify-center bg-gradient-to-b from-[#ece8e8] to-[#ffffff] dark:from-[#1e1e1e] dark:to-[#2e2e2e]">
         {children}
       </main>
-      {/* Footer*/}
     </>
   );
 };
 
-const color = "#ece8e8";
-const color2 = "#ded6d6";

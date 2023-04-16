@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useForm } from "react-hook-form";
 import { Button, Label, TextInput } from "flowbite-react";
 import { useRouter } from "next/router";
-import { useUserDispatch } from "~/context/User/root";
-import { setToken } from "~/context/User/actions";
-import { useModalDispatch } from "~/context/Modals/root";
+import { useForm } from "react-hook-form";
+
 import { setToggle } from "~/context/Modals/actions";
+import { useModalDispatch } from "~/context/Modals/root";
+import { setToken } from "~/context/User/actions";
+import { useUserDispatch } from "~/context/User/root";
 
 type TypeUserAuth = { email: string; password: string };
 

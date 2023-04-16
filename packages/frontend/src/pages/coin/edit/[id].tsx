@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+
 import { UpdateCoinOrganism } from "~/components/organisms/UpdateCoin";
 
 const EditCoin: NextPage = () => {

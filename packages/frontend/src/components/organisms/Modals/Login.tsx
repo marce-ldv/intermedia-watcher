@@ -1,7 +1,8 @@
 import { Modal } from "flowbite-react";
+
 import { LoginForm } from "~/components/organisms/LoginForm";
-import { useModalDispatch, useModalState } from "~/context/Modals/root";
 import { setToggle } from "~/context/Modals/actions";
+import { useModalDispatch, useModalState } from "~/context/Modals/root";
 
 const Login = () => {
   const { show } = useModalState();

@@ -1,18 +1,21 @@
 import { type AppType } from "next/dist/shared/lib/utils";
+
 import { MainLayout } from "~/components/layouts";
+
 import "~/styles/globals.css";
 import { Flowbite } from "flowbite-react";
-import {
-  UserContextDispatch,
-  UserContextState,
-  useUserReducer,
-} from "~/context/User/root";
+
+import { Modals } from "~/components/organisms/Modals";
 import {
   ModalContextDispatch,
   ModalContextState,
   useModalReducer,
 } from "~/context/Modals/root";
-import { Modals } from "~/components/organisms/Modals";
+import {
+  UserContextDispatch,
+  UserContextState,
+  useUserReducer,
+} from "~/context/User/root";
 
 
 const App: AppType = ({ Component, pageProps }) => {

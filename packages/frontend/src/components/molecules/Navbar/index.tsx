@@ -1,3 +1,4 @@
+import { removeCookies } from "cookies-next";
 import {
   Avatar,
   Button,
@@ -6,13 +7,13 @@ import {
   Navbar,
 } from "flowbite-react";
 import Image from "next/image";
-import { removeCookies } from "cookies-next";
-import { useUserDispatch, useUserState } from "~/context/User/root";
 import { useRouter } from "next/router";
-import { resetUserData } from "~/context/User/actions";
-import { useModalDispatch } from "~/context/Modals/root";
-import { setRoute, setToggle } from "~/context/Modals/actions";
+
 import { MODAL_ROUTES } from "~/components/organisms/Modals";
+import { setRoute, setToggle } from "~/context/Modals/actions";
+import { useModalDispatch } from "~/context/Modals/root";
+import { resetUserData } from "~/context/User/actions";
+import { useUserDispatch, useUserState } from "~/context/User/root";
 
 const useNavbar = () => {
   const { token, user } = useUserState();

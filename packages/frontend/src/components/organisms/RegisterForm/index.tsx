@@ -1,7 +1,7 @@
 import axios from "axios";
-import { useForm } from "react-hook-form";
 import { Button, Checkbox, Label, Select, TextInput } from "flowbite-react";
 import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
 
 type TypeUserRegister = { email: string; password: string, name: string, role: string };
 

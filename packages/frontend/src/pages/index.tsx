@@ -1,11 +1,6 @@
 import { type NextPage } from "next";
-import Head from "next/head";
-// import { CustomTable } from "~/components/organisms/Table";
-import { getCookie } from "cookies-next";
-import jwtDecode from "jwt-decode";
 import dynamic from "next/dynamic";
-import Header from "~/components/molecules/Header";
-
+import Head from "next/head";
 
 const Table = dynamic(() => import("~/components/organisms/Table").then(
   (mod) => mod.CustomTable

@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+
 import { CreateCoinOrganism } from "~/components/organisms/CreateCoin";
 
 const CreateCoin: NextPage = () => {

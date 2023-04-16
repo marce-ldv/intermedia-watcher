@@ -1,8 +1,9 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import { LoginForm } from "~/components/organisms/LoginForm";
 import { getCookie } from "cookies-next";
 import jwtDecode from "jwt-decode";
+import type { NextPage } from "next";
+import Head from "next/head";
+
+import { LoginForm } from "~/components/organisms/LoginForm";
 
 const Login: NextPage = () => {
   return (
