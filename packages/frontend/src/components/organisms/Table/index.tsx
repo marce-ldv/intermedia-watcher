@@ -62,9 +62,13 @@ const useTable = () => {
     setIsOpenDelete(true);
   };
 
-  const handleClickConfirm = async () => {
-    await removeCoinRepository(modalData.id);
-    setIsOpenDelete(false);
+  const handleClickConfirm = () => {
+    const handleConfirm = async () => {
+      await removeCoinRepository(modalData.id!);
+      setIsOpenDelete(false);
+    }
+
+    void handleConfirm();
   };
 
   useEffect(() => {

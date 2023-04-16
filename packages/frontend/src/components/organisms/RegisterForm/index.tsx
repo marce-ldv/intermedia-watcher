@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Button, Checkbox, Label, Select, TextInput } from "flowbite-react";
+import { Button, Label, Select, TextInput } from "flowbite-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 

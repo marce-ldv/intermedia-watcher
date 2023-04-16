@@ -1,17 +1,17 @@
 import { useState } from "react";
 
-import axios from "axios";
 import { Button, Label, TextInput, ToggleSwitch } from "flowbite-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
+import {type Coin} from "~/domain/Coin";
 import {updateCoinRepository} from "~/repository/coin/updateCoin";
 
 const useUpdateCoin = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const updateCoin = async (data): Promise<void> => {
+  const updateCoin = async (data: Partial<Coin>): Promise<void> => {
     await updateCoinRepository(data, id)
   };
 
@@ -36,7 +36,7 @@ export const UpdateCoinOrganism = () => {
     setIsCanFavorite(!isCanFavorite);
   };
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: Partial<Coin>) => {
     try {
       await updateCoin({
         ...data,
@@ -49,6 +49,7 @@ export const UpdateCoinOrganism = () => {
 
   return (
     <form
+       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onSubmit={handleSubmit(onSubmit)}
       className="flex w-1/2 flex-col gap-4"
     >

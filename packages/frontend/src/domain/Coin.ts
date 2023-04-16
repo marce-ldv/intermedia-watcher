@@ -8,4 +8,5 @@ export interface Coin {
   symbol: string;
   canFavorite: boolean;
   isFavorite?: boolean;
+  isSanityCoin?: boolean;
 }

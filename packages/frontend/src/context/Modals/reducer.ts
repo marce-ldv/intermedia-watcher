@@ -5,7 +5,9 @@ import * as actionTypes from "~/context/Modals/actions";
 export interface ModalState {
   route: string;
   show: boolean;
-  data?: any;
+  data: {
+    id?: string;
+  };
 }
 
 export interface ModalAction {

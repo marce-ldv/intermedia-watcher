@@ -5,10 +5,18 @@ import { Button, Label, TextInput, ToggleSwitch } from "flowbite-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
+type TypeCreateCoin = {
+  id: string;
+  name: string;
+  symbol: string;
+  logo: string;
+  canFavorite: boolean;
+}
+
 const useCreateCoin = () => {
   const router = useRouter();
 
-  const createCoinRepository = async (data): Promise<void> => {
+  const createCoinRepository = async (data: TypeCreateCoin): Promise<void> => {
     const response = await axios.post("/api/create_coin", data);
 
     if (!response) {
@@ -25,7 +33,7 @@ const useCreateCoin = () => {
 
 export const CreateCoinOrganism = () => {
   const { createCoinRepository } = useCreateCoin();
-  const { handleSubmit, register } = useForm({
+  const { handleSubmit, register } = useForm<TypeCreateCoin>({
     defaultValues: {
       id: "",
       name: "",
@@ -40,7 +48,7 @@ export const CreateCoinOrganism = () => {
     setIsCanFavorite(!isCanFavorite);
   };
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: TypeCreateCoin) => {
     try {
       await createCoinRepository({
         ...data,
@@ -53,6 +61,7 @@ export const CreateCoinOrganism = () => {
 
   return (
     <form
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onSubmit={handleSubmit(onSubmit)}
       className="flex w-1/2 flex-col gap-4"
     >

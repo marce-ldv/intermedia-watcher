@@ -5,7 +5,13 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { method, body, cookies } = req;
+  const { method, cookies } = req;
+  const body = req.body as {
+    username: string;
+    email: string;
+    password: string;
+    role: string;
+  }
 
   const user = {
     username: body.username,
@@ -35,7 +41,6 @@ export default async function handler(
       break;
     default:
       res.setHeader("Allow", ["POST"]);
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      res.status(405).end(`Method ${method} Not Allowed`);
+      res.status(405).end(`Method ${method ?? ''} Not Allowed`);
   }
 }

@@ -2,11 +2,12 @@ import { type NextPage } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 
-const Table = dynamic(() => import("~/components/organisms/Table").then(
-  (mod) => mod.CustomTable
-), {
-  ssr: false,
-});
+const Table = dynamic(
+  () => import("~/components/organisms/Table").then((mod) => mod.CustomTable),
+  {
+    ssr: false,
+  }
+);
 
 const Home: NextPage = () => {
   return (
@@ -23,26 +24,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-export function getServerSideProps({ req, res }: any) {
-  console.log('indexxxx SSR')
-
-  return {
-    props: {
-
-    }
-  };
-}
-
-// export function getServerSideProps({ req, res }: any) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  // const token = getCookie("token", { req, res }) || "";
-  // const decoded = jwtDecode(token) || null;
-  //
-  // return {
-  //   props: {
-  //     token: token,
-  //     user: decoded?.payload,
-  //   },
-  // };
-// }

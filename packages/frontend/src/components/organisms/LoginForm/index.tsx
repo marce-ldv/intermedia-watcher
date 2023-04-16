@@ -9,6 +9,7 @@ import { setToken } from "~/context/User/actions";
 import { useUserDispatch } from "~/context/User/root";
 
 type TypeUserAuth = { email: string; password: string };
+type UserLoginResponse = { token: string, user: { id: string, email: string, role: string } };
 
 const useAuth = () => {
   const router = useRouter();
@@ -16,7 +17,7 @@ const useAuth = () => {
   const modalDispatch = useModalDispatch();
 
   const loginRepository = async (data: TypeUserAuth): Promise<void> => {
-    const response = await axios.post("api/login", data);
+    const response = await axios.post<UserLoginResponse>("api/login", data);
 
     if (!response) {
       throw new Error("Failed to login");
@@ -33,7 +34,7 @@ const useAuth = () => {
 
 export const LoginForm = () => {
   const { loginRepository } = useAuth();
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register } = useForm<TypeUserAuth>();
 
   const onSubmit = async (data: TypeUserAuth) => {
     try {
@@ -44,6 +45,7 @@ export const LoginForm = () => {
   };
 
   return (
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <div>
         <div className="mb-2 block">

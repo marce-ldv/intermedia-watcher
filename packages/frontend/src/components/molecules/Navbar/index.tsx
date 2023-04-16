@@ -21,10 +21,10 @@ const useNavbar = () => {
   const dispatch = useUserDispatch();
   const modalDispatch = useModalDispatch();
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     removeCookies("token");
     dispatch(resetUserData());
-    await router.push("/");
+    void router.push("/");
   };
 
   const handleLoginModal = () => {

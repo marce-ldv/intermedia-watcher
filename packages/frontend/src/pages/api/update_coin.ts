@@ -1,11 +1,14 @@
 import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+import { type Coin } from "~/domain/Coin";
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { method, body, cookies } = req;
+  const { method, cookies } = req;
+  const body = req.body as Coin;
 
   switch (method) {
     case "POST":
@@ -19,7 +22,7 @@ export default async function handler(
             headers: {
               "Content-Type": "application/json",
               token: cookies.token || null,
-            }
+            },
           }
         );
 
@@ -30,7 +33,6 @@ export default async function handler(
       break;
     default:
       res.setHeader("Allow", ["POST"]);
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      res.status(405).end(`Method ${method} Not Allowed`);
+      res.status(405).end(`Method ${method ?? ''} Not Allowed`);
   }
 }
