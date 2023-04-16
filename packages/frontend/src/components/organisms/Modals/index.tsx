@@ -19,12 +19,6 @@ export const Modals = () => {
         return <Login />;
       case MODAL_ROUTES.REGISTER:
         return <Register />;
-      // case MODAL_ROUTES.CREATE_COIN:
-      //   return <CreateCoinForm onClose={onClose} />;
-      // case MODAL_ROUTES.DELETE_COIN:
-      //   return <DeleteCoinForm onClose={onClose} />;
-      // case MODAL_ROUTES.EDIT_COIN:
-      //   return <EditCoinForm onClose={onClose} />;
       default:
         return null;
     }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import axios from "axios";
+import axios from "~/config/instance";
 import { Button, Label, TextInput, ToggleSwitch } from "flowbite-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -11,13 +11,13 @@ type TypeCreateCoin = {
   symbol: string;
   logo: string;
   canFavorite: boolean;
-}
+};
 
 const useCreateCoin = () => {
   const router = useRouter();
 
   const createCoinRepository = async (data: TypeCreateCoin): Promise<void> => {
-    const response = await axios.post("/api/create_coin", data);
+    const response = await axios.post("api/create_coin", data);
 
     if (!response) {
       throw new Error("Failed to create coin");
@@ -40,7 +40,7 @@ export const CreateCoinOrganism = () => {
       symbol: "",
       logo: "",
       canFavorite: false,
-    }
+    },
   });
   const [isCanFavorite, setIsCanFavorite] = useState(false);
 

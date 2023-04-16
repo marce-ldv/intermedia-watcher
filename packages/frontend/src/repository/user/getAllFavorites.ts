@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "~/config/instance";
 
 export const getAllFavoritesUser = async (): Promise<string[]> => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

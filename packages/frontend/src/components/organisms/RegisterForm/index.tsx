@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "~/config/instance";
 import { Button, Label, Select, TextInput } from "flowbite-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";

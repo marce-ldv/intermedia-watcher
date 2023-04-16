@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios from "~/config/instance";
+
 
 import type { Coin } from "~/domain/Coin";
 

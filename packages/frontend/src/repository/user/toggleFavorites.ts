@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "~/config/instance";
 
 interface ToggleFavoritesUser {
   favoriteId: string;
