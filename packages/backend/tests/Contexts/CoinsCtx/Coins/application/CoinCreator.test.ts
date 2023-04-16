@@ -10,7 +10,7 @@ beforeEach(() => {
   creator = new CoinsAddCoinService(repository);
 });
 
-describe('CoinCreator', () => {
+describe('Create Coin', () => {
   it('should create a valid coin', async () => {
     const id = 'some-id';
     const name = 'some-name';
@@ -23,7 +23,7 @@ describe('CoinCreator', () => {
 
     const coin = new Coin({ id, name, logo, price, marketCap, priceChange24hAgo, symbol, canFavorite });
 
-    await creator.run(coin);
+    await creator.run({ ...coin });
 
     repository.assertLastSavedCoinsIs(coin);
   });

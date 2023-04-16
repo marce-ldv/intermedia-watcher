@@ -11,4 +11,6 @@ export interface CoinRepository {
   update(coin: CoinUpdateDTO): Promise<void>;
 
   remove(id: string): Promise<void>;
+
+  getCoinById(id: string): Promise<Coin>;
 }

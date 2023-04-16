@@ -54,3 +54,7 @@ services:
   Coins.coins.application.CoinsUpdateCoinService:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsUpdateCoinService
     arguments: [ '@Coins.coins.domain.CoinRepository' ]
+
+  Coins.coins.application.CoinsGetCoinService:
+    class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetCoinService
+    arguments: [ '@Coins.coins.domain.CoinRepository' ]

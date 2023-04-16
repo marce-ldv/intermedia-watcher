@@ -37,4 +37,4 @@ services:
 
   Apps.coins.controllers.CoinUpdateCoinController:
     class: ../../controllers/Coins/CoinUpdateCoinController
-    arguments: [ '@Coins.coins.application.CoinsUpdateCoinService' ]
+    arguments: [ '@Coins.coins.application.CoinsUpdateCoinService', '@Coins.coins.application.CoinsGetCoinService' ]

@@ -1,4 +1,5 @@
 import { CoinRepository } from '../domain/CoinRepository';
+import {Coin} from "../domain/Coin";
 
 export class CoinsAddCoinService {
   private readonly useCase: CoinRepository;
@@ -8,7 +9,7 @@ export class CoinsAddCoinService {
   }
 
   async run(body: any): Promise<void> {
-    const coin = {
+    const coin = new Coin({
       id: body.id,
       name: body.name,
       symbol: body.symbol,
@@ -17,7 +18,7 @@ export class CoinsAddCoinService {
       marketCap: body.marketCap,
       priceChange24hAgo: body.priceChange24hAgo,
       canFavorite: body.canFavorite
-    };
+    })
 
     return this.useCase.save(coin);
   }

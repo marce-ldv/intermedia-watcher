@@ -4,12 +4,15 @@ import httpStatus from 'http-status';
 import { Controller } from '../Controller';
 import jwt from 'jsonwebtoken';
 import { CoinsUpdateCoinService } from '../../../../../Contexts/CoinsCtx/Coins/application/CoinsUpdateCoinService';
+import { CoinsGetCoinService } from '../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetCoinService';
 
 export class CoinUpdateCoinController implements Controller {
   private readonly useCase: CoinsUpdateCoinService;
+  private readonly useCaseGetCoin: CoinsGetCoinService;
 
-  constructor(useCase: CoinsUpdateCoinService) {
+  constructor(useCase: CoinsUpdateCoinService, useCaseGetCoin: CoinsGetCoinService) {
     this.useCase = useCase;
+    this.useCaseGetCoin = useCaseGetCoin;
   }
 
   async run(req: Request, res: Response): Promise<void> {
@@ -37,13 +40,17 @@ export class CoinUpdateCoinController implements Controller {
       return;
     }
 
-    await this.useCase.run({
-      id: req.body.id,
-      name: req.body.name,
-      symbol: req.body.symbol,
-      logo: req.body.logo,
-      canFavorite: req.body.canFavorite
-    });
+    const coin = await this.useCaseGetCoin.run(req.body.id);
+
+    if (!coin) {
+      res.status(httpStatus.NOT_FOUND).send({ error: 'Not found, the coin you want to update does not exist' });
+      return;
+    }
+
+    const coinUpdated = { ...coin, ...req.body };
+
+    await this.useCase.run(coinUpdated);
+
     res.status(httpStatus.OK).send({
       message: `Coin ${req.body.name} updated`,
       data: req.body
