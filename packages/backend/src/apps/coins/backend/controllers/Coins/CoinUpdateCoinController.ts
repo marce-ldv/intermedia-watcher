@@ -42,7 +42,7 @@ export class CoinUpdateCoinController implements Controller {
 
     const coin = await this.useCaseGetCoin.run(req.body.id);
 
-    if (!coin) {
+    if (!coin.id) {
       res.status(httpStatus.NOT_FOUND).send({ error: 'Not found, the coin you want to update does not exist' });
       return;
     }

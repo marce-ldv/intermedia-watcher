@@ -114,7 +114,7 @@ export class SanityCoinsRepository implements CoinRepository {
   }
 
   async getCoinById(id: string): Promise<Coin> {
-    return await axios.get(`https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/query/user`, {
+    const coinResponse = await axios.get(`https://${SANITY_PROJECT_ID}.api.sanity.io/v1/data/query/user`, {
       params: {
         query: `*[_type == "coin" && id == "${id}"]`
       },
@@ -123,5 +123,21 @@ export class SanityCoinsRepository implements CoinRepository {
         Authorization: `Bearer ${SANITY_TOKEN}`
       }
     });
+
+    if (coinResponse.data.result.length === 0) {
+      return new Coin({
+        id: '',
+        name: '',
+        symbol: '',
+        logo: '',
+        canFavorite: false,
+        marketCap: '',
+        price: '',
+        priceChange24hAgo: '',
+        isSanityCoin: false
+      });
+    }
+
+    return new Coin({ ...coinResponse.data.result[0] });
   }
 }
