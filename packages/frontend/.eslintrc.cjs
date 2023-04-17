@@ -7,8 +7,14 @@ const config = {
     {
       extends: [
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:testing-library/react",
       ],
-      files: ["*.ts", "*.tsx"],
+      files: [
+        "*.ts",
+        "*.tsx",
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
       parserOptions: {
         project: path.join(__dirname, "tsconfig.json"),
       },
@@ -18,8 +24,8 @@ const config = {
   parserOptions: {
     project: path.join(__dirname, "tsconfig.json"),
   },
-  plugins: ["@typescript-eslint"],
-  extends: ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  plugins: ["@typescript-eslint", "testing-library"],
+  extends: ["next/core-web-vitals", "plugin:@typescript-eslint/recommended", "plugin:testing-library/react"],
   rules: {
     "@typescript-eslint/consistent-type-imports": [
       "warn",
