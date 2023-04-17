@@ -1,18 +1,28 @@
 import { useState } from "react";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Label, TextInput, ToggleSwitch } from "flowbite-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
-import {type Coin} from "~/domain/Coin";
-import {updateCoinRepository} from "~/repository/coin/updateCoin";
+import { updateCoinSchema } from "~/components/organisms/UpdateCoin/validations";
+import { type Coin } from "~/domain/Coin";
+import { updateCoinRepository } from "~/repository/coin/updateCoin";
 
 const useUpdateCoin = () => {
   const router = useRouter();
   const { id } = router.query;
 
   const updateCoin = async (data: Partial<Coin>): Promise<void> => {
-    await updateCoinRepository(data, id as string)
+    try {
+      await updateCoinRepository(data, id as string);
+
+      toast.success("Coin updated successfully");
+      await router.push("/");
+    } catch (error) {
+      toast.error("Failed to update coin");
+    }
   };
 
   return {
@@ -22,13 +32,15 @@ const useUpdateCoin = () => {
 
 export const UpdateCoinOrganism = () => {
   const { updateCoin } = useUpdateCoin();
-  const { handleSubmit, register } = useForm({
+  const { handleSubmit, register, formState } = useForm({
     defaultValues: {
       name: "",
       symbol: "",
       logo: "",
       canFavorite: false,
-    }
+    },
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
+    resolver: zodResolver(updateCoinSchema),
   });
   const [isCanFavorite, setIsCanFavorite] = useState(false);
 
@@ -49,7 +61,7 @@ export const UpdateCoinOrganism = () => {
 
   return (
     <form
-       // eslint-disable-next-line @typescript-eslint/no-misused-promises
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onSubmit={handleSubmit(onSubmit)}
       className="flex w-1/2 flex-col gap-4"
     >
@@ -63,6 +75,8 @@ export const UpdateCoinOrganism = () => {
           placeholder="Ethereum"
           required
           {...register("name")}
+          color={formState.errors.name ? "failure" : ""}
+          helperText={formState.errors.name?.message}
         />
       </div>
       <div>
@@ -75,6 +89,8 @@ export const UpdateCoinOrganism = () => {
           placeholder="ETH"
           required
           {...register("symbol")}
+          color={formState.errors.symbol ? "failure" : ""}
+          helperText={formState.errors.symbol?.message}
         />
       </div>
       <div>
@@ -87,6 +103,8 @@ export const UpdateCoinOrganism = () => {
           placeholder="https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png"
           required
           {...register("logo")}
+          color={formState.errors.logo ? "failure" : ""}
+          helperText={formState.errors.logo?.message}
         />
       </div>
       <div>

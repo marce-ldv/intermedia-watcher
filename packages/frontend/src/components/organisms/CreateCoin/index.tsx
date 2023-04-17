@@ -1,9 +1,13 @@
 import { useState } from "react";
 
-import axios from "~/config/instance";
+import {zodResolver} from "@hookform/resolvers/zod";
 import { Button, Label, TextInput, ToggleSwitch } from "flowbite-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+
+import {createCoinSchema} from "~/components/organisms/CreateCoin/validations";
+import axios from "~/config/instance";
 
 type TypeCreateCoin = {
   id: string;
@@ -33,7 +37,7 @@ const useCreateCoin = () => {
 
 export const CreateCoinOrganism = () => {
   const { createCoinRepository } = useCreateCoin();
-  const { handleSubmit, register } = useForm<TypeCreateCoin>({
+  const { handleSubmit, register, formState } = useForm<TypeCreateCoin>({
     defaultValues: {
       id: "",
       name: "",
@@ -41,6 +45,8 @@ export const CreateCoinOrganism = () => {
       logo: "",
       canFavorite: false,
     },
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
+    resolver: zodResolver(createCoinSchema),
   });
   const [isCanFavorite, setIsCanFavorite] = useState(false);
 
@@ -54,8 +60,10 @@ export const CreateCoinOrganism = () => {
         ...data,
         canFavorite: isCanFavorite,
       });
+
+      toast.success("Coin created successfully");
     } catch (error) {
-      console.log(error);
+      toast.error("Failed to create coin");
     }
   };
 
@@ -75,6 +83,8 @@ export const CreateCoinOrganism = () => {
           placeholder="nmatic-network"
           required
           {...register("id")}
+          color={formState.errors.id ? "failure" : ""}
+          helperText={formState.errors.id?.message}
         />
       </div>
       <div>
@@ -87,6 +97,8 @@ export const CreateCoinOrganism = () => {
           placeholder="Ethereum"
           required
           {...register("name")}
+          color={formState.errors.name ? "failure" : ""}
+          helperText={formState.errors.name?.message}
         />
       </div>
       <div>
@@ -99,6 +111,8 @@ export const CreateCoinOrganism = () => {
           placeholder="ETH"
           required
           {...register("symbol")}
+          color={formState.errors.symbol ? "failure" : ""}
+          helperText={formState.errors.symbol?.message}
         />
       </div>
       <div>
@@ -111,6 +125,8 @@ export const CreateCoinOrganism = () => {
           placeholder="https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png"
           required
           {...register("logo")}
+          color={formState.errors.logo ? "failure" : ""}
+          helperText={formState.errors.logo?.message}
         />
       </div>
       <div>

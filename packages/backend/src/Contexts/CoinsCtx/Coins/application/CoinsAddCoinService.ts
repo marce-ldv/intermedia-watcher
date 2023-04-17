@@ -1,5 +1,5 @@
 import { CoinRepository } from '../domain/CoinRepository';
-import {Coin} from "../domain/Coin";
+import { Coin } from '../domain/Coin';
 
 export class CoinsAddCoinService {
   private readonly useCase: CoinRepository;
@@ -18,7 +18,7 @@ export class CoinsAddCoinService {
       marketCap: body.marketCap,
       priceChange24hAgo: body.priceChange24hAgo,
       canFavorite: body.canFavorite
-    })
+    });
 
     return this.useCase.save(coin);
   }

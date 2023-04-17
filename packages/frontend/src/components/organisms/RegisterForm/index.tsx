@@ -1,22 +1,30 @@
-import axios from "~/config/instance";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Label, Select, TextInput } from "flowbite-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
-type TypeUserRegister = { email: string; password: string, name: string, role: string };
+import { registerSchema } from "~/components/organisms/RegisterForm/validations";
+import axios from "~/config/instance";
+
+type TypeUserRegister = {
+  email: string;
+  password: string;
+  username: string;
+  role: string;
+};
 
 const useRegister = () => {
   const router = useRouter();
   const registerUser = async (data: TypeUserRegister): Promise<void> => {
-    const response = await axios.post("api/register", data);
+    try {
+      await axios.post<void>("api/register", data);
+      await router.push("/");
 
-    if (!response) {
-      throw new Error("Failed to register");
+      toast.success("User created successfully");
+    } catch (error) {
+      console.log(error);
     }
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
-    localStorage.setItem("token", response.data.token);
-    await router.push("/");
   };
   return {
     registerUser,
@@ -25,7 +33,16 @@ const useRegister = () => {
 
 export const RegisterForm = () => {
   const { registerUser } = useRegister();
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, formState } = useForm<TypeUserRegister>({
+    defaultValues: {
+      username: "",
+      email: "",
+      password: "",
+      role: "user",
+    },
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
+    resolver: zodResolver(registerSchema),
+  });
 
   const onSubmit = async (data: TypeUserRegister) => {
     try {
@@ -49,6 +66,8 @@ export const RegisterForm = () => {
             placeholder="username"
             required={true}
             {...register("username")}
+            color={formState.errors.username ? "failure" : ""}
+            helperText={formState.errors.username?.message}
           />
         </div>
       </div>
@@ -62,6 +81,8 @@ export const RegisterForm = () => {
           placeholder="name@flowbite.com"
           required={true}
           {...register("email")}
+          color={formState.errors.email ? "failure" : ""}
+          helperText={formState.errors.email?.message}
         />
       </div>
       <div>
@@ -73,6 +94,8 @@ export const RegisterForm = () => {
           type="password"
           required={true}
           {...register("password")}
+          color={formState.errors.password ? "failure" : ""}
+          helperText={formState.errors.password?.message}
         />
       </div>
       <div>

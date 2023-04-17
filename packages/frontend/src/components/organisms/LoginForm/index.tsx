@@ -1,15 +1,21 @@
-import axios from "~/config/instance";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Label, TextInput } from "flowbite-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
+import { loginSchema } from "~/components/organisms/LoginForm/validations";
+import axios from "~/config/instance";
 import { setToggle } from "~/context/Modals/actions";
 import { useModalDispatch } from "~/context/Modals/root";
 import { setToken } from "~/context/User/actions";
 import { useUserDispatch } from "~/context/User/root";
 
 type TypeUserAuth = { email: string; password: string };
-type UserLoginResponse = { token: string, user: { id: string, email: string, role: string } };
+type UserLoginResponse = {
+  token: string;
+  user: { id: string; email: string; role: string };
+};
 
 const useAuth = () => {
   const router = useRouter();
@@ -17,15 +23,20 @@ const useAuth = () => {
   const modalDispatch = useModalDispatch();
 
   const loginRepository = async (data: TypeUserAuth): Promise<void> => {
-    const response = await axios.post<UserLoginResponse>("api/login", data);
+    try {
+      const response = await axios.post<UserLoginResponse>("api/login", data);
 
-    if (!response) {
-      throw new Error("Failed to login");
+      if (!response) {
+        throw new Error("Failed to login");
+      }
+
+      dispatch(setToken(response.data.token));
+      modalDispatch(setToggle(false));
+      toast.success("User logged in successfully");
+      await router.push("/");
+    } catch (error) {
+      toast.error("Failed to login");
     }
-
-    dispatch(setToken(response.data.token));
-    modalDispatch(setToggle(false));
-    await router.push("/");
   };
   return {
     loginRepository,
@@ -34,7 +45,11 @@ const useAuth = () => {
 
 export const LoginForm = () => {
   const { loginRepository } = useAuth();
-  const { handleSubmit, register } = useForm<TypeUserAuth>();
+  const { handleSubmit, register, formState } = useForm<TypeUserAuth>({
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
+    resolver: zodResolver(loginSchema),
+  });
+  console.log(formState.errors);
 
   const onSubmit = async (data: TypeUserAuth) => {
     try {
@@ -57,6 +72,8 @@ export const LoginForm = () => {
           placeholder="marce@test.com"
           required={true}
           {...register("email")}
+          color={formState.errors.email ? "failure" : ""}
+          helperText={formState.errors.email?.message}
         />
       </div>
       <div>
@@ -68,6 +85,8 @@ export const LoginForm = () => {
           type="password"
           required={true}
           {...register("password")}
+          color={formState.errors.password ? "failure" : ""}
+          helperText={formState.errors.password?.message}
         />
       </div>
       <Button type="submit">Login</Button>
