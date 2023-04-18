@@ -8,6 +8,22 @@ import * as http from 'http';
 import httpStatus from 'http-status';
 import session from 'express-session';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
+
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Intermedia watcher API',
+      version: '1.0.0',
+      description: 'Intermedia API'
+    }
+  },
+  apis: ['./src/apps/coins/backend/routes/*.ts']
+};
+
+const swaggerSpec = swaggerJSDoc(options);
 
 import { registerRoutes } from './routes';
 
@@ -30,6 +46,8 @@ export class Server {
     this.express.use(compress());
     const router = Router();
     router.use(errorHandler());
+    router.use('/api-docs', swaggerUi.serve);
+    router.get('/api-docs', swaggerUi.setup(swaggerSpec));
     this.express.use(router);
     this.express.use(
       session({
