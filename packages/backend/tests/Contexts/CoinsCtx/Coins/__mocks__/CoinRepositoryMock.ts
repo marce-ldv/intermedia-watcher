@@ -31,4 +31,20 @@ export class CoinRepositoryMock implements CoinRepository {
   update(coin: CoinUpdateDTO): Promise<void> {
     return Promise.resolve(undefined);
   }
+
+  getCoinById(id: string): Promise<Coin> {
+    return Promise.resolve(
+      new Coin({
+        id: '1',
+        name: 'Bitcoin',
+        symbol: 'BTC',
+        logo: 'logo',
+        isSanityCoin: true,
+        price: '2323',
+        canFavorite: true,
+        marketCap: '23',
+        priceChange24hAgo: '23'
+      })
+    );
+  }
 }
