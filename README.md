@@ -1,4 +1,4 @@
-# Intermedia Price Tracker
+# Price Tracker
 
 This application is designed to display the prices of the most well-known cryptocurrencies, allowing users to make comparisons, view price fluctuations, and add them to their favorites. It can be compared to a website like https://coinmarketcap.com/.
 
