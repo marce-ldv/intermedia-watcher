@@ -124,7 +124,7 @@ export const CustomTable = () => {
             key={row.name}
             className="bg-white dark:border-gray-700 dark:bg-gray-800"
           >
-            {isLoggedIn ? (
+            {isLoggedIn && row.canFavorite ? (
               <Table.Cell className="!p-4">
                 <Rating>
                   <Rating.Star
@@ -199,15 +199,17 @@ export const CustomTable = () => {
             whiteSpace: "nowrap",
           }}
         >
-          {isLoggedIn && (
-            <div className="flex justify-start">
-              <ToggleSwitch
-                checked={isShowFavorites}
-                label="Show favorites"
-                onChange={setIsShowFavorites}
-              />
-            </div>
-          )}
+          <div className="flex justify-between items-center mb-4">
+            {isLoggedIn && (
+              <div className="flex justify-start">
+                <ToggleSwitch
+                  checked={isShowFavorites}
+                  label="Show favorites"
+                  onChange={setIsShowFavorites}
+                />
+              </div>
+            )}
+          </div>
           <Table hoverable={true}>
             <Table.Head>
               {columns.map((column) => (
@@ -216,7 +218,7 @@ export const CustomTable = () => {
                 </Table.HeadCell>
               ))}
             </Table.Head>
-            <Table.Body className="divide-y">
+            <Table.Body>
               {isShowFavorites
                 ? renderTableBody(favorites)
                 : renderTableBody(data)}

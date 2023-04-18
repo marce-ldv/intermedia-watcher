@@ -8,7 +8,8 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/*"
+      "packages/backend",
+      "packages/frontend"
     ]
   },
   "scripts": {
@@ -16,17 +17,14 @@
 
     "dev:backend": "yarn workspace backend dev:coins:backend",
     "dev:frontend": "yarn workspace frontend dev",
-    "dev:sanity": "yarn workspace sanity dev",
     "dev": "concurrently \"yarn dev:backend\" \"yarn dev:frontend\"",
 
     "start:backend": "yarn workspace backend start:coins:backend",
     "start:frontend": "yarn workspace frontend start",
-    "start:sanity": "yarn workspace sanity start",
     "start": "concurrently \"yarn start:backend\" \"yarn start:frontend\"",
 
     "build:backend": "yarn workspace backend build",
     "build:frontend": "yarn workspace frontend build",
-    "build:sanity": "yarn workspace sanity build",
     "build": "yarn build:backend && yarn build:frontend",
 
     "test:backend": "yarn workspace backend test",

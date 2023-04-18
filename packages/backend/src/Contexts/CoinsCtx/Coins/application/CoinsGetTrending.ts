@@ -18,7 +18,7 @@ export class CoinsGetTrending {
 
     const allCoins = [...coinsTrending, ...coinsSanity];
 
-    // get ids from trending coins from gecko and sanity
+    // get ids from trending coins from gecko and sanity-studio
     const allCoinsIds = allCoins.map(item => item.id);
 
     const marketInfo = await this.coinGeckoService.getMarketInfo(allCoinsIds);
@@ -28,7 +28,7 @@ export class CoinsGetTrending {
 
       return {
         ...coin,
-        canFavorite: sanityCoin?.canFavorite ?? true,
+        canFavorite: sanityCoin ? sanityCoin.canFavorite : true,
         name: sanityCoin?.name ?? coin.name,
         symbol: sanityCoin?.symbol ?? coin.symbol,
         logo: sanityCoin?.logo ?? coin.image,
