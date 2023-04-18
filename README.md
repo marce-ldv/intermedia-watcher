@@ -2,6 +2,19 @@
 
 This application is designed to display the prices of the most well-known cryptocurrencies, allowing users to make comparisons, view price fluctuations, and add them to their favorites. It can be compared to a website like https://coinmarketcap.com/.
 
+# You can navigate to the following sections:
+
+- [Features](https://github.com/marce-ldv/intermedia-watcher#features)
+- [Architecture](https://github.com/marce-ldv/intermedia-watcher#architecture)
+- [Backend - Domain Driver Design](https://github.com/marce-ldv/intermedia-watcher#backend---domain-driver-design)
+- [Frontend](https://github.com/marce-ldv/intermedia-watcher#frontend)
+- [Requirements with Docker](https://github.com/marce-ldv/intermedia-watcher#requirements-with-docker)
+- [Installation with Docker](https://github.com/marce-ldv/intermedia-watcher#installation-with-docker)
+- [How to Run Locally](https://github.com/marce-ldv/intermedia-watcher#how-to-run-locally)
+- [Usage](https://github.com/marce-ldv/intermedia-watcher#usage)
+- [Testing](https://github.com/marce-ldv/intermedia-watcher#testing)
+- [How to Run the Application in Local](https://github.com/marce-ldv/intermedia-watcher#how-to-run-the-application-in-local)
+
 ## Technologies
 
 This project uses the following technologies:
@@ -242,8 +255,6 @@ Additionally, you can access the frontend by opening your browser and typing `ht
 For the backend, you can access the API documentation by opening your browser and typing `http://localhost:5000/api-docs` in the address bar. This will take you to the Swagger UI page, where you can browse and test the available API endpoints.
 
 If you encounter any issues during the setup process, please make sure that you have followed all the steps correctly and that the required dependencies are installed on your system. You can also refer to the project's documentation or contact the developer for further assistance.
-
-## How to run locally:
 
 ## Usage
 
