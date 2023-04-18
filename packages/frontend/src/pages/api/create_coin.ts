@@ -16,15 +16,11 @@ export default async function handler(
   switch (method) {
     case "POST":
       try {
-        const response = await axios.post(
-          `${url}coins/add`,
-          data,
-          {
-            headers: {
-              token: cookies.token || null,
-            },
-          }
-        );
+        const response = await axios.post(`${url}coins/add`, data, {
+          headers: {
+            token: cookies.token || null,
+          },
+        });
 
         res.status(200).json(response.data);
       } catch (error) {

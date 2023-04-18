@@ -1,13 +1,16 @@
 import axios from "~/config/instance";
 
-import {type Coin} from "~/domain/Coin";
+import { type Coin } from "~/domain/Coin";
 
-export const updateCoinRepository = async (data: Partial<Coin>, id: string): Promise<void> => {
+export const updateCoinRepository = async (
+  data: Partial<Coin>,
+  id: string
+): Promise<void> => {
   try {
     await axios.post("api/update_coin", {
       id,
-      ...data
-    })
+      ...data,
+    });
   } catch (error) {
     console.log(error);
   }

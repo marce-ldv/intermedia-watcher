@@ -30,48 +30,48 @@ This project uses the following technologies:
 The following features are available in this application:
 
 - Displays a list of top cryptocurrencies.
-    - The information is obtained using the free CoinGecko API (https://www.coingecko.com/es/api/documentation).
-    - A list of cryptocurrencies can be configured and pre-defined by a system administrator.
-    - It can be viewed without logging in.
-    - Each item in the list should display:
-        - Logo
-        - Current price
-        - Market capitalization
-        - Change in the last 24 hours (%)
-        - Button to add to favorites (only authenticated users and if this cryptocurrency allows it)
-        - Edit cryptocurrency button (admin only)
+  - The information is obtained using the free CoinGecko API (https://www.coingecko.com/es/api/documentation).
+  - A list of cryptocurrencies can be configured and pre-defined by a system administrator.
+  - It can be viewed without logging in.
+  - Each item in the list should display:
+    - Logo
+    - Current price
+    - Market capitalization
+    - Change in the last 24 hours (%)
+    - Button to add to favorites (only authenticated users and if this cryptocurrency allows it)
     - Edit cryptocurrency button (admin only)
-    - Delete cryptocurrency button (admin only)
-        - When pressed, a modal should appear asking if the user wants to delete the cryptocurrency.
+  - Edit cryptocurrency button (admin only)
+  - Delete cryptocurrency button (admin only)
+    - When pressed, a modal should appear asking if the user wants to delete the cryptocurrency.
 - Option to display only favorite cryptocurrencies (for authenticated users)
 - Updates prices every minute.
 - User registration
-    - A user can register for the system by accessing another section or modal from the main page.
-    - By default, there will be a user with an administrator role (which will give access to other functions).
-    - The user must register with the following information:
-        - Username
-        - Email
-        - Password
-    - The following verifications should be checked and appropriate error messages should be displayed:
-        - If another user is already registered with the same email.
-        - If the email has a valid format.
-        - If the password has at least 8 characters and consists of letters and numbers.
+  - A user can register for the system by accessing another section or modal from the main page.
+  - By default, there will be a user with an administrator role (which will give access to other functions).
+  - The user must register with the following information:
+    - Username
+    - Email
+    - Password
+  - The following verifications should be checked and appropriate error messages should be displayed:
+    - If another user is already registered with the same email.
+    - If the email has a valid format.
+    - If the password has at least 8 characters and consists of letters and numbers.
 - User authentication
-    - Similar to the registration process, the user can be authenticated by accessing a different section or modal.
-    - The following information is required to access:
-        - Email
-        - Password
-    - Admin users can access in the same way as regular users.
-    - The following verifications should be checked and appropriate error messages should be displayed:
-        - If the email or password is incorrect.
-        - If the email format is incorrect.
+  - Similar to the registration process, the user can be authenticated by accessing a different section or modal.
+  - The following information is required to access:
+    - Email
+    - Password
+  - Admin users can access in the same way as regular users.
+  - The following verifications should be checked and appropriate error messages should be displayed:
+    - If the email or password is incorrect.
+    - If the email format is incorrect.
 - Cryptocurrency addition panel to be displayed on the main screen (only visible and accessible to admin users)
-    - The navigation bar will display an additional menu.
-    - It should allow adding a cryptocurrency with the following information:
-        - Logo
-        - Display name
-        - Internal ID (for API search)
-        - Whether it is allowed to add to favorites.
+  - The navigation bar will display an additional menu.
+  - It should allow adding a cryptocurrency with the following information:
+    - Logo
+    - Display name
+    - Internal ID (for API search)
+    - Whether it is allowed to add to favorites.
 
 ## Architecture
 
@@ -82,6 +82,7 @@ This project is a monorepo, using yarn workspaces to manage dependencies. The fr
 Domain Driven Design (DDD) is a software development approach that focuses on the business domain, and it provides a set of guidelines and principles to design and implement software systems that reflect the real-world domain accurately. The main idea behind DDD is to create a shared language between business stakeholders and developers, which helps to reduce complexity and ensure that the software system meets the business needs.
 
 DDD is based on the following principles:
+
 - Focus on the core domain
 - Collaborate with domain experts
 - Ubiquitous Language
@@ -93,6 +94,7 @@ DDD is based on the following principles:
 The Hexagonal Architecture, also known as Ports and Adapters Architecture, is an architectural style that helps to create software systems that are easy to maintain, test, and extend. The main idea behind Hexagonal Architecture is to separate the business logic from the infrastructure and to make the business logic the center of the design.
 
 The Hexagonal Architecture consists of three layers:
+
 - Domain layer: This layer contains the business logic, domain entities, and domain services.
 - Application layer: This layer contains the use cases and application services that use the domain layer.
 - Infrastructure layer: This layer contains the adapters that connect the application layer to the outside world, such as databases, APIs, or message queues.
@@ -278,7 +280,6 @@ npm run cy:open
 
 This will open the Cypress test runner, where you can select and run the tests.
 
-
 ## How to run the application in local:
 
 Before running the application, make sure you have Node.js 16 or higher installed on your machine. If you are on Windows, run the following command before starting the application:
@@ -298,7 +299,6 @@ yarn && yarn dev
 This will install the dependencies and start the application. The frontend and backend will be running simultaneously.
 
 Note: If you want to run the application using Docker, please refer to the section "How to run the application using Docker" in the README.
-
 
 ## Credits
 

@@ -13,7 +13,9 @@ import {
   type UserAction,
 } from "./reducer";
 
-export const UserContextDispatch = createContext<Dispatch<UserAction> | null>(null);
+export const UserContextDispatch = createContext<Dispatch<UserAction> | null>(
+  null
+);
 export const UserContextState = createContext<UserState>(userInitialState);
 
 export const useUserReducer = (): [UserState, Dispatch<UserAction>] => {

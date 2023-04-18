@@ -1,4 +1,4 @@
-import {type Reducer} from "react";
+import { type Reducer } from "react";
 
 import * as actionTypes from "~/context/Modals/actions";
 
@@ -15,7 +15,7 @@ export interface ModalAction {
   payload?: any;
 }
 
-export type ModalReducer = Reducer<ModalState, ModalAction>
+export type ModalReducer = Reducer<ModalState, ModalAction>;
 
 export const modalInitialState = {
   route: "",
@@ -39,7 +39,7 @@ export const modalReducer: ModalReducer = (state, action) => {
       return {
         ...state,
         data: action.payload as object,
-      }
+      };
     default:
       return state;
   }

@@ -16,14 +16,12 @@ export default async function handler(
   switch (method) {
     case "POST":
       try {
-        const response = await axios.delete(
-          `${url}coins/remove`, {
-            headers: {
-              token: cookies.token || null,
-            },
-            data,
+        const response = await axios.delete(`${url}coins/remove`, {
+          headers: {
+            token: cookies.token || null,
           },
-        );
+          data,
+        });
 
         res.status(200).json(response.data);
       } catch (error) {
@@ -32,6 +30,6 @@ export default async function handler(
       break;
     default:
       res.setHeader("Allow", ["DELETE"]);
-      res.status(405).end(`Method ${method ?? ''} Not Allowed`);
+      res.status(405).end(`Method ${method ?? ""} Not Allowed`);
   }
 }

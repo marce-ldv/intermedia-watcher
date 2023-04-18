@@ -15,8 +15,8 @@ export async function middleware(req: NextRequest) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   // const token = (cookies && cookies.get(AUTH_TOKEN).value) ?? "";
-  const token = cookies.get(AUTH_TOKEN)
-  const decodedToken = token ? jwtDecode<AuthToken>(token.value) : null
+  const token = cookies.get(AUTH_TOKEN);
+  const decodedToken = token ? jwtDecode<AuthToken>(token.value) : null;
 
   const isAuthorized = decodedToken !== null;
 

@@ -12,36 +12,34 @@ export default async function handler(
     email: string;
     password: string;
     role: string;
-  }
+  };
 
   const user = {
     username: body.username,
     email: body.email,
     password: body.password,
     role: body.role,
-  }
+  };
 
   switch (method) {
     case "POST":
       try {
-        const response = await axios.post(
-          `${url}user/register`, user, {
-            headers: {
-              token: cookies.token || null,
-            }
-          }
-        );
+        const response = await axios.post(`${url}user/register`, user, {
+          headers: {
+            token: cookies.token || null,
+          },
+        });
 
-        console.log(response)
+        console.log(response);
 
         res.status(200).json(response.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
         res.status(400).json({ success: false });
       }
       break;
     default:
       res.setHeader("Allow", ["POST"]);
-      res.status(405).end(`Method ${method ?? ''} Not Allowed`);
+      res.status(405).end(`Method ${method ?? ""} Not Allowed`);
   }
 }

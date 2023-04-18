@@ -23,5 +23,5 @@ export const Modals = () => {
         return null;
     }
   };
-    return getModal();
+  return getModal();
 };

@@ -19,4 +19,3 @@ export const MainLayout = ({ children }: { children: ReactNode }) => {
     </>
   );
 };
-

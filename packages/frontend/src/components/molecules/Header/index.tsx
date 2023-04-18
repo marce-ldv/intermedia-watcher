@@ -1,5 +1,11 @@
-import {Breadcrumb} from "flowbite-react";
-import {HiCog, HiDotsVertical, HiExclamationCircle, HiHome, HiTrash} from "react-icons/hi";
+import { Breadcrumb } from "flowbite-react";
+import {
+  HiCog,
+  HiDotsVertical,
+  HiExclamationCircle,
+  HiHome,
+  HiTrash,
+} from "react-icons/hi";
 
 const Header = () => {
   return (
@@ -59,8 +65,7 @@ const Header = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
-
+export default Header;

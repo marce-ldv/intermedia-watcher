@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-import {zodResolver} from "@hookform/resolvers/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Label, TextInput, ToggleSwitch } from "flowbite-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
-import {createCoinSchema} from "~/components/organisms/CreateCoin/validations";
+import { createCoinSchema } from "~/components/organisms/CreateCoin/validations";
 import axios from "~/config/instance";
 
 type TypeCreateCoin = {

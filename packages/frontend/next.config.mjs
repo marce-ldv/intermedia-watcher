@@ -8,7 +8,11 @@
 const config = {
   reactStrictMode: true,
   images: {
-    domains: ["assets.coingecko.com", "s2.coinmarketcap.com", "intermediait.wpengine.com"],
+    domains: [
+      "assets.coingecko.com",
+      "s2.coinmarketcap.com",
+      "intermediait.wpengine.com",
+    ],
   },
 
   /**

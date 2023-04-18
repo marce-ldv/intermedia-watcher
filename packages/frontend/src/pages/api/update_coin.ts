@@ -35,6 +35,6 @@ export default async function handler(
       break;
     default:
       res.setHeader("Allow", ["POST"]);
-      res.status(405).end(`Method ${method ?? ''} Not Allowed`);
+      res.status(405).end(`Method ${method ?? ""} Not Allowed`);
   }
 }

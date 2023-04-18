@@ -1,6 +1,5 @@
 import axios from "~/config/instance";
 
-
 import type { Coin } from "~/domain/Coin";
 
 export const getTrendingCoins = async (): Promise<Coin[]> => {

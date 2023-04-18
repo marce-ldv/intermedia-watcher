@@ -11,13 +11,11 @@ export default async function handler(
   switch (method) {
     case "GET":
       try {
-        const response = await axios.get(
-          `${url}user/favorites`, {
-            headers: {
-              token: cookies.token,
-            }
-          }
-        );
+        const response = await axios.get(`${url}user/favorites`, {
+          headers: {
+            token: cookies.token,
+          },
+        });
         res.status(200).json(response.data);
       } catch (error) {
         res.status(400).json({ success: false });
