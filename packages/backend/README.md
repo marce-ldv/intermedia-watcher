@@ -81,7 +81,6 @@ This project is a monorepo, using yarn workspaces to manage dependencies. The fr
 Domain Driven Design (DDD) is a software development approach that focuses on the business domain, and it provides a set of guidelines and principles to design and implement software systems that reflect the real-world domain accurately. The main idea behind DDD is to create a shared language between business stakeholders and developers, which helps to reduce complexity and ensure that the software system meets the business needs.
 
 DDD is based on the following principles:
-
 - Focus on the core domain
 - Collaborate with domain experts
 - Ubiquitous Language
@@ -93,14 +92,13 @@ DDD is based on the following principles:
 The Hexagonal Architecture, also known as Ports and Adapters Architecture, is an architectural style that helps to create software systems that are easy to maintain, test, and extend. The main idea behind Hexagonal Architecture is to separate the business logic from the infrastructure and to make the business logic the center of the design.
 
 The Hexagonal Architecture consists of three layers:
-
 - Domain layer: This layer contains the business logic, domain entities, and domain services.
 - Application layer: This layer contains the use cases and application services that use the domain layer.
 - Infrastructure layer: This layer contains the adapters that connect the application layer to the outside world, such as databases, APIs, or message queues.
 
 Using DDD and Hexagonal Architecture together can help to create software systems that are highly modular, maintainable, and scalable. The separation of concerns between the business logic and the infrastructure makes it easier to change one without affecting the other.
 
-![DDD.](https://miro.medium.com/v2/resize:fit:772/0*67W0-IRKLFtTI7dO.jpg 'Hexagonal.')
+![DDD.](https://miro.medium.com/v2/resize:fit:772/0*67W0-IRKLFtTI7dO.jpg "Hexagonal.")
 
 Here's an example of the folder structure tha i trying to do for the backend using DDD and Hexagonal Architecture:
 
@@ -268,16 +266,17 @@ To get started, simply log in to the application using your preferred authentica
 To run the unit tests for the frontend, run the following command in the root:
 
 ```
-npm run test:frontend
+yarn run test:frontend
 ```
 
 To run the end-to-end tests using Cypress (wip), run the following command in the `frontend` directory:
 
 ```
-npm run cy:open
+yarn run cy:open
 ```
 
 This will open the Cypress test runner, where you can select and run the tests.
+
 
 ## How to run the application in local:
 
@@ -298,6 +297,7 @@ yarn && yarn dev
 This will install the dependencies and start the application. The frontend and backend will be running simultaneously.
 
 Note: If you want to run the application using Docker, please refer to the section "How to run the application using Docker" in the README.
+
 
 ## Credits
 

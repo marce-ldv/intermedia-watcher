@@ -266,13 +266,13 @@ To get started, simply log in to the application using your preferred authentica
 To run the unit tests for the frontend, run the following command in the root:
 
 ```
-npm run test:frontend
+yarn run test:frontend
 ```
 
 To run the end-to-end tests using Cypress (wip), run the following command in the `frontend` directory:
 
 ```
-npm run cy:open
+yarn run cy:open
 ```
 
 This will open the Cypress test runner, where you can select and run the tests.
