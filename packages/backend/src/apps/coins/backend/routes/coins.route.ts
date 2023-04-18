@@ -26,6 +26,8 @@ export const register = (router: Router): void => {
    * @openapi
    * /coins/all:
    *  get:
+   *    tags:
+   *      - Coins
    *    description: Returns a list of all coins.
    *    responses:
    *      200:
@@ -36,6 +38,8 @@ export const register = (router: Router): void => {
    * @openapi
    * /coins/trending:
    *   get:
+   *    tags:
+   *      - Coins
    *     description: Returns a trending coins.
    *     responses:
    *       200:
@@ -46,6 +50,8 @@ export const register = (router: Router): void => {
    * @openapi
    * /coins/add:
    *    post:
+   *      tags:
+   *        - Coins
    *      description: Add a coin to the database.
    *      responses:
    *        200:
@@ -88,6 +94,8 @@ export const register = (router: Router): void => {
    * @openapi
    * /coins/remove:
    *   delete:
+   *    tags:
+   *      - Coins
    *   description: Remove a coin from the database.
    *   responses:
    *    200:
@@ -128,6 +136,8 @@ export const register = (router: Router): void => {
    * @openapi
    * /coins/update:
    *  put:
+   *   tags:
+   *      - Coins
    *   description: Update a coin in the database.
    *   responses:
    *    200:
