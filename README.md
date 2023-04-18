@@ -10,7 +10,6 @@ This application is designed to display the prices of the most well-known crypto
 - [Frontend](https://github.com/marce-ldv/intermedia-watcher#frontend)
 - [Requirements with Docker](https://github.com/marce-ldv/intermedia-watcher#requirements-with-docker)
 - [Installation with Docker](https://github.com/marce-ldv/intermedia-watcher#installation-with-docker)
-- [How to Run Locally](https://github.com/marce-ldv/intermedia-watcher#how-to-run-locally)
 - [Usage](https://github.com/marce-ldv/intermedia-watcher#usage)
 - [Testing](https://github.com/marce-ldv/intermedia-watcher#testing)
 - [How to Run the Application in Local](https://github.com/marce-ldv/intermedia-watcher#how-to-run-the-application-in-local)
