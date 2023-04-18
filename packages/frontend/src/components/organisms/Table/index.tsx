@@ -66,7 +66,7 @@ const useTable = () => {
     const handleConfirm = async () => {
       await removeCoinRepository(modalData.id as string);
       setIsOpenDelete(false);
-    }
+    };
 
     void handleConfirm();
   };
@@ -199,7 +199,7 @@ export const CustomTable = () => {
             whiteSpace: "nowrap",
           }}
         >
-          <div className="flex justify-between items-center mb-4">
+          <div className="mb-4 flex items-center justify-between">
             {isLoggedIn && (
               <div className="flex justify-start">
                 <ToggleSwitch
@@ -224,6 +224,7 @@ export const CustomTable = () => {
                 : renderTableBody(data)}
             </Table.Body>
           </Table>
+
           <PopUpModal
             onClickConfirm={handleClickConfirm}
             onClickCancel={() => setIsOpenDelete(false)}
