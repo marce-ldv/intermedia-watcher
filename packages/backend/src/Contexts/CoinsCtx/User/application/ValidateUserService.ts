@@ -1,5 +1,5 @@
-import {User} from "../domain/User";
-import {HashPasswordService} from "./HashPasswordService";
+import { User } from '../domain/User';
+import { HashPasswordService } from './HashPasswordService';
 
 export class ValidateUserService {
   validateUserPassword(user: User, bodyPassword: string): boolean {

@@ -38,7 +38,7 @@ export class UserLoginController implements Controller {
       payload: {
         email: user.email,
         username: user.username,
-        role: user.role,
+        role: user.role
       }
     });
 
@@ -48,7 +48,7 @@ export class UserLoginController implements Controller {
         username: user.username,
         email: user.email,
         favorites: user.favorites,
-        role: user.role,
+        role: user.role
       }
     };
 

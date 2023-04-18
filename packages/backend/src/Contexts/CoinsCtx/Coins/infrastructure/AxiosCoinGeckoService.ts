@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { CoinGeckoService } from '../application/CoinGeckoService';
 import { CoinGeckoDTO } from '../application/dto/CoinGeckoDTO';
-import {CoinMarketGeckoDTO} from "../application/dto/CoinMarketGeckoDTO";
+import { CoinMarketGeckoDTO } from '../application/dto/CoinMarketGeckoDTO';
 
 export class AxiosCoinGeckoService implements CoinGeckoService {
   private readonly axiosInstance: AxiosInstance;
@@ -32,7 +32,6 @@ export class AxiosCoinGeckoService implements CoinGeckoService {
         locale: 'en'
       }
     });
-
 
     return marketCoins.data;
   }

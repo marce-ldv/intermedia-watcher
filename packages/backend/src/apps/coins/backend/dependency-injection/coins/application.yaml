@@ -1,60 +1,60 @@
 services:
   Coins.coins.application.CoinGeckoService:
     class: ../../../../../Contexts/CoinsCtx/Coins/infrastructure/AxiosCoinGeckoService
-    arguments: [ '' ]
+    arguments: ['']
 
   Coins.coins.application.CoinsGetAll:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetAll
-    arguments: [ '@Coins.coins.application.CoinGeckoService' ]
+    arguments: ['@Coins.coins.application.CoinGeckoService']
 
   Coins.coins.application.CoinsGetTrending:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetTrending
-    arguments: [ '@Coins.coins.application.CoinGeckoService', '@Coins.coins.domain.CoinRepository' ]
+    arguments: ['@Coins.coins.application.CoinGeckoService', '@Coins.coins.domain.CoinRepository']
 
   Coins.user.domain.UserRepository:
     class: ../../../../../Contexts/CoinsCtx/User/infrastructure/SanityUserRepository
-    arguments: [ '' ]
+    arguments: ['']
 
   Coins.user.application.UserRegister:
     class: ../../../../../Contexts/CoinsCtx/User/application/UserRegister
-    arguments: [ '@Coins.user.domain.UserRepository' ]
+    arguments: ['@Coins.user.domain.UserRepository']
 
   Coins.user.application.UserLogin:
     class: ../../../../../Contexts/CoinsCtx/User/application/UserLogin
-    arguments: [ '@Coins.user.domain.UserRepository' ]
+    arguments: ['@Coins.user.domain.UserRepository']
 
   Coins.user.application.ValidateUserService:
     class: ../../../../../Contexts/CoinsCtx/User/application/ValidateUserService
-    arguments: [ '' ]
+    arguments: ['']
 
   Coins.user.application.JWTService:
     class: ../../../../../Contexts/CoinsCtx/User/application/JWTService
-    arguments: [ '' ]
+    arguments: ['']
 
   Coins.user.application.ToggleFavoritesService:
     class: ../../../../../Contexts/CoinsCtx/User/application/ToggleFavoritesService
-    arguments: [ '@Coins.user.domain.UserRepository' ]
+    arguments: ['@Coins.user.domain.UserRepository']
 
   Coins.user.application.GetAllFavoritesService:
     class: ../../../../../Contexts/CoinsCtx/User/application/GetAllFavoritesService
-    arguments: [ '@Coins.user.domain.UserRepository' ]
+    arguments: ['@Coins.user.domain.UserRepository']
 
   Coins.coins.domain.CoinRepository:
     class: ../../../../../Contexts/CoinsCtx/Coins/infrastructure/SanityCoinsRepository
-    arguments: [ '' ]
+    arguments: ['']
 
   Coins.coins.application.CoinsAddCoinService:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsAddCoinService
-    arguments: [ '@Coins.coins.domain.CoinRepository' ]
+    arguments: ['@Coins.coins.domain.CoinRepository']
 
   Coins.coins.application.CoinsRemoveCoinService:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsRemoveCoinService
-    arguments: [ '@Coins.coins.domain.CoinRepository' ]
+    arguments: ['@Coins.coins.domain.CoinRepository']
 
   Coins.coins.application.CoinsUpdateCoinService:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsUpdateCoinService
-    arguments: [ '@Coins.coins.domain.CoinRepository' ]
+    arguments: ['@Coins.coins.domain.CoinRepository']
 
   Coins.coins.application.CoinsGetCoinService:
     class: ../../../../../Contexts/CoinsCtx/Coins/application/CoinsGetCoinService
-    arguments: [ '@Coins.coins.domain.CoinRepository' ]
+    arguments: ['@Coins.coins.domain.CoinRepository']

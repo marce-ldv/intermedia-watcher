@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
 import { Controller } from '../Controller';
 import { UserRegister } from '../../../../../Contexts/CoinsCtx/User/application/UserRegister';
 import { TypeUser } from '../../../../../Contexts/CoinsCtx/User/domain/User';
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 export class UserRegisterController implements Controller {
   private readonly useCase: UserRegister;
@@ -22,7 +22,7 @@ export class UserRegisterController implements Controller {
       });
     }
 
-    const decoded = jwt.decode(token)
+    const decoded = jwt.decode(token);
 
     // @ts-ignore
     if (decoded.payload.role !== 'admin') {

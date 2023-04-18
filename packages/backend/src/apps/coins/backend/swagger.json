@@ -6,23 +6,15 @@
   },
   "host": "localhost:8080",
   "basePath": "/api",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/": {
       "get": {
-        "tags": [
-          "Default"
-        ],
+        "tags": ["Default"],
         "summary": "Get",
         "operationId": "Default_Get",
         "consumes": [],
-        "produces": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
+        "produces": ["text/plain", "application/json", "text/json"],
         "responses": {
           "200": {
             "description": "OK",

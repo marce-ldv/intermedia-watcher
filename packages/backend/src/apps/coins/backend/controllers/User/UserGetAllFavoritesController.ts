@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
 import { Controller } from '../Controller';
 import { UserRegister } from '../../../../../Contexts/CoinsCtx/User/application/UserRegister';
 import { TypeUser } from '../../../../../Contexts/CoinsCtx/User/domain/User';
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 export class UserGetAllFavoritesController implements Controller {
   private readonly useCase: UserRegister;

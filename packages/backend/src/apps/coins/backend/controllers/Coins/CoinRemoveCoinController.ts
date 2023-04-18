@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 
 import { Controller } from '../Controller';
 import { CoinsRemoveCoinService } from '../../../../../Contexts/CoinsCtx/Coins/application/CoinsRemoveCoinService';
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 export class CoinRemoveCoinController implements Controller {
   private readonly useCase: CoinsRemoveCoinService;

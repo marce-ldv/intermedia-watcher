@@ -1,40 +1,45 @@
 services:
   Apps.coins.controllers.StatusGetController:
     class: ../../controllers/StatusGetController
-    arguments: [ ]
+    arguments: []
 
   Apps.coins.controllers.CoinGetAllController:
     class: ../../controllers/Coins/CoinGetAllController
-    arguments: [ '@Coins.coins.application.CoinsGetAll' ]
+    arguments: ['@Coins.coins.application.CoinsGetAll']
 
   Apps.coins.controllers.CoinGetTrendingController:
     class: ../../controllers/Coins/CoinGetTrendingController
-    arguments: [ '@Coins.coins.application.CoinsGetTrending' ]
+    arguments: ['@Coins.coins.application.CoinsGetTrending']
 
   Apps.coins.controllers.UserRegisterController:
     class: ../../controllers/User/UserRegisterController
-    arguments: [ '@Coins.user.application.UserRegister' ]
+    arguments: ['@Coins.user.application.UserRegister']
 
   Apps.coins.controllers.UserLoginController:
     class: ../../controllers/User/UserLoginController
-    arguments: [ '@Coins.user.application.UserLogin', '@Coins.user.application.ValidateUserService', '@Coins.user.application.JWTService' ]
+    arguments:
+      [
+        '@Coins.user.application.UserLogin',
+        '@Coins.user.application.ValidateUserService',
+        '@Coins.user.application.JWTService'
+      ]
 
   Apps.coins.controllers.ToggleFavoritesController:
     class: ../../controllers/User/ToggleFavoritesController
-    arguments: [ '@Coins.user.application.ToggleFavoritesService' ]
+    arguments: ['@Coins.user.application.ToggleFavoritesService']
 
   Apps.coins.controllers.UserGetAllFavoritesController:
     class: ../../controllers/User/UserGetAllFavoritesController
-    arguments: [ '@Coins.user.application.GetAllFavoritesService' ]
+    arguments: ['@Coins.user.application.GetAllFavoritesService']
 
   Apps.coins.controllers.CoinAddCoinController:
     class: ../../controllers/Coins/CoinAddCoinController
-    arguments: [ '@Coins.coins.application.CoinsAddCoinService' ]
+    arguments: ['@Coins.coins.application.CoinsAddCoinService']
 
   Apps.coins.controllers.CoinRemoveCoinController:
     class: ../../controllers/Coins/CoinRemoveCoinController
-    arguments: [ '@Coins.coins.application.CoinsRemoveCoinService' ]
+    arguments: ['@Coins.coins.application.CoinsRemoveCoinService']
 
   Apps.coins.controllers.CoinUpdateCoinController:
     class: ../../controllers/Coins/CoinUpdateCoinController
-    arguments: [ '@Coins.coins.application.CoinsUpdateCoinService', '@Coins.coins.application.CoinsGetCoinService' ]
+    arguments: ['@Coins.coins.application.CoinsUpdateCoinService', '@Coins.coins.application.CoinsGetCoinService']
