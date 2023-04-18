@@ -218,7 +218,7 @@ export const CustomTable = () => {
                 </Table.HeadCell>
               ))}
             </Table.Head>
-            <Table.Body>
+            <Table.Body className="position-absolute">
               {isShowFavorites
                 ? renderTableBody(favorites)
                 : renderTableBody(data)}
